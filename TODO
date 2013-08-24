@@ -1,7 +1,6 @@
 * Make sprites for each duelist
 * Make speech bubble more rounded
 * Make spear for speech bubble
-* Show 0 on timer
 * Loading screen until font is loaded
 * Enemy logic
 
@@ -21,3 +20,4 @@ DONE
 * Have boards "fall in"
 * Get next button looking right
 * Make desert landscape flatter
+* Show 0 on timer

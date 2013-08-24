@@ -383,11 +383,11 @@ var runTimer = function t(dt) {
     this.last_update += dt;
     if (this.last_update > 1000) {
 	this.numeric_time--;
-	this.setText(this.numeric_time);
-	if (this.numeric_time == 0) {
+	if (this.numeric_time < 0) {
 	    endGame(kLost);
 	    return;
 	}
+	this.setText(this.numeric_time);
 	this.last_update = this.last_update - 1000;
     }
 }
