@@ -18,6 +18,7 @@ goog.require('lime.Director');
 goog.require('lime.Scene');
 goog.require('lime.Layer');
 goog.require('lime.Circle');
+goog.require('lime.Polygon');
 goog.require('lime.RoundedRect');
 goog.require('lime.Label');
 goog.require('lime.animation.Spawn');
@@ -31,8 +32,10 @@ goog.require('kchodorow.lime.SpriteScale9');
 var kAntag = 500;
 var kGround = 430;
 var kHeight = 472;
+var kLost = false;
 var kProtag = 100;
 var kWidth = 700;
+var kWon = true;
 var kClickEvent = ['mousedown','touchstart'];
 
 // On levels layer
@@ -61,6 +64,7 @@ var getLevelsLayer = function() {
         .setPosition(0, 0);
     var antag = new lime.Sprite().setFill(spriteSheet.getFrame('antag.png'));
     bg.appendChild(antag);
+    goog.events.listen(bg, kClickEvent, showLevel);
     levels.appendChild(bg);
     for (var col = 0; col < bNumY; col++) {
 	for (var row = 0; row < bNumX; row++) {
@@ -111,25 +115,17 @@ duelists.openingScene = function() {
 
     // Speech bubbles
     this.bubbles = [];
-    var protag_bubble = new kchodorow.lime.SpriteScale9().setFill(spriteSheet.getFrame('bubble.png'))
-        .scale9(300, 100).setPosition(100, 50);
-    var protag_label = new lime.Label().setSize(280, 80).setPosition(150, 50)
-        .setFontSize(24).setFontColor('#092140')
-        .setText('To win, you must vanquish me and my second.');
-    protag_bubble.appendChild(protag_label);
-    this.scene.appendChild(protag_bubble);
-    this.bubbles.push(protag_bubble);
 
-    // Next button
     var antag_bubble = new kchodorow.lime.SpriteScale9().setFill(spriteSheet.getFrame('bubble.png'))
         .scale9(300, 100).setPosition(230, 150);
     var antag_label = new lime.Label().setSize(280, 80).setPosition(150, 50)
         .setFontSize(24).setFontColor('#BF2A2A')
-        .setText('And you must vanquish me and mine.');
+        .setText('You must vanquish me and all of my seconds to win the duel.');
     antag_bubble.appendChild(antag_label);
     this.scene.appendChild(antag_bubble);
     this.bubbles.push(antag_bubble);
 
+    // Next button
     var next_bubble = new lime.Sprite().setFill(spriteSheet.getFrame('next.png'))
         .setPosition(100, 250);
     var next_label = new lime.Label().setSize(190, 40).setPosition(100, 25)
@@ -210,25 +206,42 @@ var addSeconds = function(duelists, e) {
 };
 
 currentLevel = 0;
-var endGame = function() {
-    var layer = this.getParent();
-    var scene = layer.getParent();
+var endGame = function(won) {
+    lime.scheduleManager.unschedule(runTimer, duelists.board.timer);
+    dotCount = 0;
 
     // Remove board
-    scene.removeChild(layer);
+    duelists.scene.removeChild(duelists.board);
+    // Pop the last child: the banner
+    duelists.scene.removeChildAt(duelists.scene.getNumberOfChildren()-1);
 
     // Display levels
     var levels = getLevelsLayer();
+    duelists.scene.appendChild(levels);
+
     var sprite = levels.children_[currentLevel];
+
+    if (!won) {
+	var x = new lime.Sprite().setFill(spriteSheet.getFrame('x.png'));
+	sprite.appendChild(x);
+	sprite.x = x;
+	return;
+    }
+
+    sprite.removeChild(sprite.x);
     var star = new lime.Sprite().setFill(spriteSheet.getFrame('star.png'));
     sprite.appendChild(star);
-    scene.appendChild(levels);
 
     currentLevel++;
-    dotCount = 0;
 
-    // TODO: 
+    // TODO: test
     if (currentLevel > 10) {
+	var star = new lime.Sprite().setFill(spriteSheet.getFrame('star.png'))
+	    .setSize(300, 300).setPosition(kWidth/2, kHeight/2);
+	var youWin = new lime.Label().setText("YOU WIN!");
+	star.appendChild(youWin);
+	duelists.scene.appendChild(star);
+	return;
     }
 
     var nextLevel = levels.children_[currentLevel];
@@ -255,10 +268,9 @@ var selectDot = function(e) {
     }
     curColor = this.color;
     if (dotCount >= 3) {
-	endGame.call(this);
+	endGame(kWon);
     }
 };
-
 
 var kTargetAlpha = 175;
 
@@ -287,7 +299,7 @@ var showLevel = function() {
 
     var level = kchodorow.Levels[currentLevel];
     // TODO: fix centering
-    var board = new lime.Layer().setPosition(kWidth/2, kHeight/2);
+    var board = new lime.Layer().setPosition(250, 70);
     for (var i = 0; i < level.getWidth(); i++) {
 	for (var j = 0; j < level.getHeight(); j++) {
 	    var startingSize = Math.floor(Math.random()*20)+10; // 10px - 30px
@@ -301,7 +313,38 @@ var showLevel = function() {
 	    board.appendChild(dot);
 	}
     }
+    duelists.board = board;
+
+    var timer = new lime.Label()
+        .setText(level.getSeconds())
+        .setFontSize(24).setFontColor(9, 33, 64)
+        .setPosition(-100, 150);
+    timer.numeric_time = level.getSeconds();
+    timer.last_update = 0;
+    lime.scheduleManager.schedule(runTimer, timer);
+    board.appendChild(timer);
+    board.timer = timer;
+
+    var banner_label = new lime.Label()
+        .setText("Shoot three circles of the same color in a row before the timer runs out")
+        .setFontSize(24).setFontColor(9, 33, 64)
+        .setPosition(kWidth/2, 100).setSize(kWidth-20, 150);
+    duelists.scene.appendChild(banner_label);
+    
     duelists.scene.appendChild(board);
+};
+
+var runTimer = function t(dt) {
+    this.last_update += dt;
+    if (this.last_update > 1000) {
+	this.numeric_time--;
+	this.setText(this.numeric_time);
+	if (this.numeric_time == 0) {
+	    endGame(kLost);
+	    return;
+	}
+	this.last_update = this.last_update - 1000;
+    }
 }
 
 duelists.gameOver = function(duelists) {

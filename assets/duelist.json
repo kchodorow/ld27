@@ -10,7 +10,7 @@
 },
 "bubble.png":
 {
-	"frame": {"x":50,"y":25,"w":12,"h":12},
+	"frame": {"x":50,"y":77,"w":12,"h":12},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":12,"h":12},
@@ -26,15 +26,15 @@
 },
 "duelist.png":
 {
-	"frame": {"x":92,"y":75,"w":15,"h":40},
-	"rotated": false,
+	"frame": {"x":2,"y":229,"w":15,"h":40},
+	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":40},
 	"sourceSize": {"w":15,"h":40}
 },
 "lock.png":
 {
-	"frame": {"x":64,"y":23,"w":50,"h":56},
+	"frame": {"x":2,"y":25,"w":50,"h":56},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":56},
@@ -42,7 +42,7 @@
 },
 "next.png":
 {
-	"frame": {"x":2,"y":25,"w":150,"h":46},
+	"frame": {"x":2,"y":77,"w":150,"h":46},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":46},
@@ -58,11 +58,19 @@
 },
 "star.png":
 {
-	"frame": {"x":50,"y":75,"w":40,"h":38},
+	"frame": {"x":64,"y":80,"w":40,"h":38},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":38},
 	"sourceSize": {"w":40,"h":38}
+},
+"x.png":
+{
+	"frame": {"x":64,"y":23,"w":55,"h":56},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":55,"h":56},
+	"sourceSize": {"w":55,"h":56}
 }},
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker ",
@@ -71,6 +79,6 @@
 	"format": "RGBA8888",
 	"size": {"w":128,"h":256},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:d1a47819e572747e599c03076a0f4bc3$"
+	"smartupdate": "$TexturePacker:SmartUpdate:a570d670836090ef4371424f17bc683d$"
 }
 }

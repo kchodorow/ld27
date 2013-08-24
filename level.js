@@ -11,10 +11,11 @@ var colorMap =
      {r: 4, g: 146, b: 178},
      ]; 
 
-kchodorow.Level = function(width, height, colors) {
+kchodorow.Level = function(width, height, colors, time) {
     this.width_ = width;
     this.height_ = height;
     this.colors_ = colors;
+    this.seconds_ = time;
 };
 
 kchodorow.Level.prototype.getWidth = function() {
@@ -29,17 +30,21 @@ kchodorow.Level.prototype.getColor = function() {
     return colorMap[Math.floor(Math.random()*this.colors_)];
 };
 
+kchodorow.Level.prototype.getSeconds = function() {
+    return this.seconds_;
+};
+
 kchodorow.Levels = 
     [
-     new kchodorow.Level(3, 3, 2),
-     new kchodorow.Level(4, 4, 3),
-     new kchodorow.Level(5, 5, 3),
-     new kchodorow.Level(5, 5, 3),
-     new kchodorow.Level(5, 5, 3),
-     new kchodorow.Level(5, 5, 3),
-     new kchodorow.Level(5, 5, 3),
-     new kchodorow.Level(5, 5, 3),
-     new kchodorow.Level(5, 5, 3),
-     new kchodorow.Level(5, 5, 3),
-     new kchodorow.Level(5, 5, 3),
+     new kchodorow.Level(6, 6, 2, 10),
+     new kchodorow.Level(6, 6, 3, 9),
+     new kchodorow.Level(5, 5, 3, 8),
+     new kchodorow.Level(4, 4, 3, 7),
+     new kchodorow.Level(3, 3, 3, 6),
+     new kchodorow.Level(5, 5, 3, 5),
+     new kchodorow.Level(5, 5, 3, 5),
+     new kchodorow.Level(5, 5, 3, 5),
+     new kchodorow.Level(5, 5, 3, 5),
+     new kchodorow.Level(5, 5, 3, 5),
+     new kchodorow.Level(5, 5, 3, 3),
      ];
