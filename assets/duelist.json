@@ -48,6 +48,22 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":46},
 	"sourceSize": {"w":150,"h":46}
 },
+"pause.png":
+{
+	"frame": {"x":89,"y":120,"w":37,"h":35},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":37,"h":35},
+	"sourceSize": {"w":37,"h":35}
+},
+"play.png":
+{
+	"frame": {"x":50,"y":120,"w":37,"h":35},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":37,"h":35},
+	"sourceSize": {"w":37,"h":35}
+},
 "protag.png":
 {
 	"frame": {"x":64,"y":2,"w":19,"h":60},
@@ -79,6 +95,6 @@
 	"format": "RGBA8888",
 	"size": {"w":128,"h":256},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:a570d670836090ef4371424f17bc683d$"
+	"smartupdate": "$TexturePacker:SmartUpdate:11807d870faf92bac5d10d80aa66a26e$"
 }
 }

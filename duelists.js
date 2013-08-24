@@ -45,6 +45,7 @@ var kLockChild = 1;
 var spriteSheet = null;
 var gunshot = null;
 var levels = null;
+var music = null;
 
 var getLevelsLayer = function() {
     if (levels != null) {
@@ -96,6 +97,21 @@ duelists.start = function(){
     // Non-spritesheet
     var background = new lime.Sprite().setFill('assets/background.png').setPosition(350, 236);
     this.scene.appendChild(background);
+
+    // Music
+    music = new lime.audio.Audio('assets/desert.mp3');
+    music.play(true);
+    var pauseButton = new lime.Sprite().setFill(spriteSheet.getFrame('pause.png')).setPosition(kWidth-30, 30);
+    this.scene.appendChild(pauseButton);
+    goog.events.listen(pauseButton, kClickEvent, function() {
+	    if (music.isPlaying()) {
+		this.setFill(spriteSheet.getFrame('play.png'));
+		music.stop();
+	    } else {
+		this.setFill(spriteSheet.getFrame('pause.png'));
+		music.play();
+	    }
+	});
 
     this.director.makeMobileWebAppCapable();
 
