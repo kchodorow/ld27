@@ -6,6 +6,10 @@ goog.require('lime.parser.JSON');
 goog.require('lime.ASSETS.duelist.json');
 goog.require('lime.SpriteSheet');
 
+// Levels
+goog.require('kchodorow.Level');
+goog.require('kchodorow.Levels');
+
 // Audio
 goog.require('lime.audio.Audio');
 
@@ -233,22 +237,44 @@ var endGame = function() {
 };
 
 var dotCount = 0;
+var curColor = null;
 var selectDot = function(e) {
+    // Don't allow multiple clicks on the same dot
+    if (this.clicked) {
+	return;
+    }
+    this.clicked = true;
+
     lime.scheduleManager.unschedule(shrinkDot, this);
-    dotCount++;
     gunshot.play();
+    if (this.color == curColor) {
+	dotCount++;
+    } else {
+	dotCount = 1;
+	// Reschedule all dots?
+    }
+    curColor = this.color;
     if (dotCount >= 3) {
 	endGame.call(this);
     }
-}
+};
+
+
+var kTargetAlpha = 175;
 
 // shrink 30 px over 5 seconds = 6px/sec = .006px/ms
 var shrinkDot = function(dt) {
     var size = this.getSize();
     // If it's too small, reset
     if (size.width < 1) {
+	// Change size
 	var newSize = Math.floor(Math.random()*20)+10; // 10px - 30px
 	this.setSize(newSize, newSize);
+
+	// Change color
+	var newColor = kchodorow.Levels[currentLevel].getColor();
+	this.setFill(newColor.r, newColor.g, newColor.b, kTargetAlpha);
+	this.color = newColor.r*256*256+newColor.g*256+newColor.b;
     } else {
 	var newSize = new goog.math.Size(size.width-(dt*.006), size.height-(dt*.006));
 	this.setSize(newSize);
@@ -259,19 +285,23 @@ var showLevel = function() {
     var levelsLayer = getLevelsLayer();
     duelists.scene.removeChild(levelsLayer);
 
-    var level = new lime.Layer().setPosition(kWidth/2, kHeight/2);
-    for (var i = 0; i < 3; i++) {
-	for (var j = 0; j < 3; j++) {
+    var level = kchodorow.Levels[currentLevel];
+    // TODO: fix centering
+    var board = new lime.Layer().setPosition(kWidth/2, kHeight/2);
+    for (var i = 0; i < level.getWidth(); i++) {
+	for (var j = 0; j < level.getHeight(); j++) {
 	    var startingSize = Math.floor(Math.random()*20)+10; // 10px - 30px
-	    var dot = new lime.Circle().setFill(2, 73, 89, 175)
+	    var color = level.getColor();
+	    var dot = new lime.Circle().setFill(color.r, color.g, color.b, 175)
 		.setSize(startingSize, startingSize).setPosition(i*50, j*50);
+	    dot.color = color.r*256*256+color.g*256+color.b;
 	    // Between 3 & 5
 	    dot.shrinker = lime.scheduleManager.schedule(shrinkDot, dot);
 	    goog.events.listen(dot, kClickEvent, selectDot);
-	    level.appendChild(dot);
+	    board.appendChild(dot);
 	}
     }
-    duelists.scene.appendChild(level);
+    duelists.scene.appendChild(board);
 }
 
 duelists.gameOver = function(duelists) {
