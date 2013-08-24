@@ -1,7 +1,5 @@
-* Remove fps div
 * Allow replaying earlier levels
 * Make sprites for each duelist
-* Add music
 * Get next button looking right
 * Choose font
 * Have boards "fall in"
@@ -10,3 +8,9 @@
 Animations:
 * Sprite falling
 * Sprite shooting
+
+
+DONE
+====
+* Add music
+* Remove fps div

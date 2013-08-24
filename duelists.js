@@ -92,6 +92,7 @@ duelists.start = function(){
     gunshot = new lime.audio.Audio('assets/gunshot.wav');
 
     this.director = new lime.Director(document.getElementById('game'),kWidth,kHeight);
+    this.director.setDisplayFPS(false);
     this.scene = new lime.Scene();
 
     // Non-spritesheet
