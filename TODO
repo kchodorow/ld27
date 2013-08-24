@@ -1,9 +1,9 @@
 * Allow replaying earlier levels
 * Make sprites for each duelist
 * Get next button looking right
-* Choose font
 * Have boards "fall in"
 * Splash screen
+* Make speech bubble more rounded
 
 Animations:
 * Sprite falling
@@ -14,3 +14,4 @@ DONE
 ====
 * Add music
 * Remove fps div
+* Choose font - Luckiest Guy

@@ -136,7 +136,7 @@ duelists.openingScene = function() {
     var antag_bubble = new kchodorow.lime.SpriteScale9().setFill(spriteSheet.getFrame('bubble.png'))
         .scale9(300, 100).setPosition(230, 150);
     var antag_label = new lime.Label().setSize(280, 80).setPosition(150, 50)
-        .setFontSize(24).setFontColor('#BF2A2A')
+        .setFontSize(24).setFontColor('#BF2A2A').setFontFamily('Luckiest Guy')
         .setText('You must vanquish me and all of my seconds to win the duel.');
     antag_bubble.appendChild(antag_label);
     this.scene.appendChild(antag_bubble);
@@ -146,7 +146,7 @@ duelists.openingScene = function() {
     var next_bubble = new lime.Sprite().setFill(spriteSheet.getFrame('next.png'))
         .setPosition(100, 250);
     var next_label = new lime.Label().setSize(190, 40).setPosition(100, 25)
-        .setFontSize(24).setFontColor('#092140')
+        .setFontSize(24).setFontColor('#092140').setFontFamily('Luckiest Guy')
         .setText('Agree to terms');
     next_bubble.appendChild(next_label);
     this.scene.appendChild(next_bubble);
@@ -255,7 +255,7 @@ var endGame = function(won) {
     if (currentLevel > 10) {
 	var star = new lime.Sprite().setFill(spriteSheet.getFrame('star.png'))
 	    .setSize(300, 300).setPosition(kWidth/2, kHeight/2);
-	var youWin = new lime.Label().setText("YOU WIN!");
+	var youWin = new lime.Label().setText("YOU WIN!").setFontFamily('Luckiest Guy');
 	star.appendChild(youWin);
 	duelists.scene.appendChild(star);
 	return;
@@ -332,7 +332,7 @@ var showLevel = function() {
     }
     duelists.board = board;
 
-    var timer = new lime.Label()
+    var timer = new lime.Label().setFontFamily('Luckiest Guy')
         .setText(level.getSeconds())
         .setFontSize(24).setFontColor(9, 33, 64)
         .setPosition(-100, 150);
@@ -342,7 +342,7 @@ var showLevel = function() {
     board.appendChild(timer);
     board.timer = timer;
 
-    var banner_label = new lime.Label()
+    var banner_label = new lime.Label().setFontFamily('Luckiest Guy')
         .setText("Shoot three circles of the same color in a row before the timer runs out")
         .setFontSize(24).setFontColor(9, 33, 64)
         .setPosition(kWidth/2, 100).setSize(kWidth-20, 150);
@@ -366,7 +366,8 @@ var runTimer = function t(dt) {
 
 duelists.gameOver = function(duelists) {
     var scene = new lime.Scene();
-    var label = new lime.Label().setText("Game over").setPosition(kWidth/2, kHeight/2);
+    var label = new lime.Label().setText("Game over").setPosition(kWidth/2, kHeight/2)
+        .setFontFamily('Luckiest Guy');
     scene.appendChild(label);
     // TODO: play again button
     this.director.replaceScene(scene, lime.transitions.Dissolve, 2);
