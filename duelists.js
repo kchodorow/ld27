@@ -138,7 +138,7 @@ duelists.openingScene = function() {
     this.bubbles = [];
 
     var antag_bubble = new kchodorow.lime.SpriteScale9().setFill(spriteSheet.getFrame('bubble.png'))
-        .scale9(300, 100).setPosition(230, 150);
+        .scale9(300, 100).setPosition(kWidth/2-150, 100);
     var antag_label = new lime.Label().setSize(280, 80).setPosition(150, 50)
         .setFontSize(24).setFontColor('#BF2A2A').setFontFamily('Luckiest Guy')
         .setText('You must vanquish me and all of my seconds to win the duel.');
@@ -148,10 +148,10 @@ duelists.openingScene = function() {
 
     // Next button
     var next_bubble = new lime.Sprite().setFill(spriteSheet.getFrame('next.png'))
-        .setPosition(100, 250);
-    var next_label = new lime.Label().setSize(190, 40).setPosition(100, 25)
+        .setPosition(kWidth/2, 300);
+    var next_label = new lime.Label().setSize(190, 40).setPosition(0, 10)
         .setFontSize(24).setFontColor('#092140').setFontFamily('Luckiest Guy')
-        .setText('Agree to terms');
+        .setText('Agree to duel');
     next_bubble.appendChild(next_label);
     this.scene.appendChild(next_bubble);
     this.bubbles.push(next_bubble);
