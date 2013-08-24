@@ -245,14 +245,18 @@ var endGame = function(won) {
     var sprite = levels.children_[currentLevel];
 
     if (!won) {
-	died.play();
+	if (music.isPlaying()) {
+	    died.play();
+	}
 	var x = new lime.Sprite().setFill(spriteSheet.getFrame('x.png'));
 	sprite.appendChild(x);
 	sprite.x = x;
 	return;
     }
 
-    levelUp.play();
+    if (music.isPlaying()) {
+	levelUp.play();
+    }
     sprite.removeChild(sprite.x);
     var star = new lime.Sprite().setFill(spriteSheet.getFrame('star.png'));
     sprite.appendChild(star);
@@ -284,7 +288,9 @@ var selectDot = function(e) {
     this.clicked = true;
 
     lime.scheduleManager.unschedule(shrinkDot, this);
-    gunshot.play();
+    if (music.isPlaying()) {
+	gunshot.play();
+    }
     if (this.color == curColor) {
 	dotCount++;
     } else {
@@ -322,9 +328,11 @@ var showLevel = function() {
     var levelsLayer = getLevelsLayer();
     duelists.scene.removeChild(levelsLayer);
 
+    var boardX = 200;
+
     var level = kchodorow.Levels[currentLevel];
     // TODO: fix centering
-    var board = new lime.Layer().setPosition(250, -100);
+    var board = new lime.Layer().setPosition(boardX, -100);
     for (var i = 0; i < level.getWidth(); i++) {
 	for (var j = 0; j < level.getHeight(); j++) {
 	    var startingSize = Math.floor(Math.random()*20)+10; // 10px - 30px
@@ -357,7 +365,7 @@ var showLevel = function() {
     duelists.scene.appendChild(banner_label);
     
     duelists.scene.appendChild(board);
-    board.runAction(new lime.animation.MoveTo(250, 70));
+    board.runAction(new lime.animation.MoveTo(boardX, 70));
 };
 
 var runTimer = function t(dt) {
