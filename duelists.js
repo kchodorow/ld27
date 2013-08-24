@@ -44,6 +44,8 @@ var kLockChild = 1;
 
 var spriteSheet = null;
 var gunshot = null;
+var levelUp = null;
+var died = null;
 var levels = null;
 var music = null;
 
@@ -60,7 +62,7 @@ var getLevelsLayer = function() {
     var totalWidth = bWidth*bNumX;
     var totalHeight = bHeight*bNumY;
 
-    levels = new lime.Layer().setPosition(200, 100);
+    levels = new lime.Layer();
     var bg = new lime.RoundedRect().setSize(80, 60).setFill(242, 71, 56, 255)
         .setPosition(0, 0);
     var antag = new lime.Sprite().setFill(spriteSheet.getFrame('antag.png'));
@@ -90,6 +92,8 @@ duelists.start = function(){
 					    lime.ASSETS.duelist.json,
 					    lime.parser.JSON);
     gunshot = new lime.audio.Audio('assets/gunshot.wav');
+    levelUp = new lime.audio.Audio('assets/level_up.wav');
+    died = new lime.audio.Audio('assets/died.wav');
 
     this.director = new lime.Director(document.getElementById('game'),kWidth,kHeight);
     this.director.setDisplayFPS(false);
@@ -234,17 +238,21 @@ var endGame = function(won) {
 
     // Display levels
     var levels = getLevelsLayer();
+    levels.setPosition(200, -200);
     duelists.scene.appendChild(levels);
+    levels.runAction(new lime.animation.MoveTo(200, 100));
 
     var sprite = levels.children_[currentLevel];
 
     if (!won) {
+	died.play();
 	var x = new lime.Sprite().setFill(spriteSheet.getFrame('x.png'));
 	sprite.appendChild(x);
 	sprite.x = x;
 	return;
     }
 
+    levelUp.play();
     sprite.removeChild(sprite.x);
     var star = new lime.Sprite().setFill(spriteSheet.getFrame('star.png'));
     sprite.appendChild(star);
@@ -316,7 +324,7 @@ var showLevel = function() {
 
     var level = kchodorow.Levels[currentLevel];
     // TODO: fix centering
-    var board = new lime.Layer().setPosition(250, 70);
+    var board = new lime.Layer().setPosition(250, -100);
     for (var i = 0; i < level.getWidth(); i++) {
 	for (var j = 0; j < level.getHeight(); j++) {
 	    var startingSize = Math.floor(Math.random()*20)+10; // 10px - 30px
@@ -349,6 +357,7 @@ var showLevel = function() {
     duelists.scene.appendChild(banner_label);
     
     duelists.scene.appendChild(board);
+    board.runAction(new lime.animation.MoveTo(250, 70));
 };
 
 var runTimer = function t(dt) {

@@ -1,9 +1,9 @@
 * Allow replaying earlier levels
 * Make sprites for each duelist
 * Get next button looking right
-* Have boards "fall in"
 * Splash screen
 * Make speech bubble more rounded
+* Make desert landscape flatter
 
 Animations:
 * Sprite falling
@@ -15,3 +15,4 @@ DONE
 * Add music
 * Remove fps div
 * Choose font - Luckiest Guy
+* Have boards "fall in"
