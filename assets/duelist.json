@@ -2,7 +2,7 @@
 
 "antag.png":
 {
-	"frame": {"x":60,"y":2,"w":21,"h":60},
+	"frame": {"x":60,"y":30,"w":21,"h":60},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":21,"h":60},
@@ -10,7 +10,7 @@
 },
 "bubble.png":
 {
-	"frame": {"x":48,"y":180,"w":12,"h":12},
+	"frame": {"x":99,"y":170,"w":12,"h":12},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":12,"h":12},
@@ -26,7 +26,7 @@
 },
 "duelist.png":
 {
-	"frame": {"x":102,"y":103,"w":15,"h":40},
+	"frame": {"x":102,"y":128,"w":15,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":40},
@@ -50,7 +50,7 @@
 },
 "pause.png":
 {
-	"frame": {"x":60,"y":194,"w":37,"h":35},
+	"frame": {"x":60,"y":205,"w":37,"h":35},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":37,"h":35},
@@ -58,7 +58,7 @@
 },
 "play.png":
 {
-	"frame": {"x":60,"y":143,"w":37,"h":35},
+	"frame": {"x":60,"y":168,"w":37,"h":35},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":37,"h":35},
@@ -66,15 +66,23 @@
 },
 "protag.png":
 {
-	"frame": {"x":60,"y":25,"w":19,"h":60},
+	"frame": {"x":60,"y":53,"w":16,"h":60},
 	"rotated": true,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":19,"h":60},
-	"sourceSize": {"w":19,"h":60}
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":60},
+	"sourceSize": {"w":16,"h":60}
+},
+"protag_shoot.png":
+{
+	"frame": {"x":60,"y":2,"w":26,"h":60},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":26,"h":60},
+	"sourceSize": {"w":26,"h":60}
 },
 "star.png":
 {
-	"frame": {"x":60,"y":103,"w":40,"h":38},
+	"frame": {"x":60,"y":128,"w":40,"h":38},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":38},
@@ -82,7 +90,7 @@
 },
 "x.png":
 {
-	"frame": {"x":60,"y":46,"w":55,"h":56},
+	"frame": {"x":60,"y":71,"w":55,"h":56},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":55,"h":56},
@@ -95,6 +103,6 @@
 	"format": "RGBA8888",
 	"size": {"w":128,"h":256},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:a59816805265c1bb8bb3a8a29dbf7e65$"
+	"smartupdate": "$TexturePacker:SmartUpdate:903bb28275b373be8545fd10fafd51bd$"
 }
 }

@@ -26,6 +26,7 @@ goog.require('lime.animation.FadeTo');
 goog.require('lime.animation.ScaleTo');
 goog.require('lime.animation.MoveTo');
 goog.require('lime.animation.RotateBy');
+goog.require('lime.animation.KeyframeAnimation');
 
 goog.require('kchodorow.lime.SpriteScale9');
 
@@ -245,14 +246,24 @@ var endGame = function(won) {
     var sprite = levels.children_[currentLevel];
 
     if (!won) {
+	duelists.protag.runAction(new lime.animation.Spawn(new lime.animation.RotateBy(720),
+							   new lime.animation.ScaleTo(0.0)));
+
 	if (music.isPlaying()) {
 	    died.play();
 	}
-	var x = new lime.Sprite().setFill(spriteSheet.getFrame('x.png'));
-	sprite.appendChild(x);
-	sprite.x = x;
+
+	if (!sprite.x) {
+	    var x = new lime.Sprite().setFill(spriteSheet.getFrame('x.png'));
+	    sprite.appendChild(x);
+	    sprite.x = x;
+	}
+
 	return;
     }
+
+    duelists.antag.runAction(new lime.animation.Spawn(new lime.animation.RotateBy(720),
+						      new lime.animation.ScaleTo(0.0)));
 
     if (music.isPlaying()) {
 	levelUp.play();

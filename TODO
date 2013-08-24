@@ -1,14 +1,17 @@
-* Allow replaying earlier levels
 * Make sprites for each duelist
-* Splash screen
 * Make speech bubble more rounded
 * Make spear for speech bubble
-* Make desert landscape flatter
+* Show 0 on timer
+* Loading screen until font is loaded
+* Enemy logic
 
 Animations:
 * Sprite falling
 * Sprite shooting
 
+Maybe:
+* Splash screen
+* Allow replaying earlier levels
 
 DONE
 ====
@@ -17,3 +20,4 @@ DONE
 * Choose font - Luckiest Guy
 * Have boards "fall in"
 * Get next button looking right
+* Make desert landscape flatter
