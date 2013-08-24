@@ -21,7 +21,11 @@ goog.require('lime.animation.ScaleTo');
 goog.require('lime.animation.MoveTo');
 goog.require('lime.animation.RotateBy');
 
-var kGround = 400;
+goog.require('kchodorow.lime.SpriteScale9');
+
+var kGround = 430;
+var kProtag = 100;
+var kAntag = 500;
 
 // entrypoint
 duelists.start = function(){
@@ -30,25 +34,37 @@ duelists.start = function(){
 					   lime.parser.JSON);
     var gunshot = new lime.audio.Audio('assets/gunshot.wav');
 
-    var director = new lime.Director(document.body,1024,768);
+    var director = new lime.Director(document.getElementById('game'),700,472);
     var scene = new lime.Scene();
 
+    // Non-spritesheet
+    var background = new lime.Sprite().setFill('assets/background.png').setPosition(350, 236);
+    scene.appendChild(background);
+
     // Protagonists
-    var protag = new lime.Sprite().setFill(spriteSheet.getFrame('duelist.png'))
-        .setPosition(30, kGround);
+    var protag = new lime.Sprite().setFill(spriteSheet.getFrame('protag.png'))
+        .setPosition(kProtag, kGround);
     var protag_second = new lime.Sprite().setFill(spriteSheet.getFrame('duelist.png'))
-       .setPosition(10, kGround);
+        .setPosition(kProtag - 20, kGround).setAnchorPoint(0.5, 1.0);
     scene.appendChild(protag);
     scene.appendChild(protag_second);
 
     // Antagonists
-    var antag = new lime.Sprite().setFill(spriteSheet.getFrame('duelist.png'))
-        .setPosition(700, kGround);
+    var antag = new lime.Sprite().setFill(spriteSheet.getFrame('antag.png'))
+        .setPosition(kAntag, kGround).setAnchorPoint(0.5, 1.0);
     scene.appendChild(antag);
+
+    var bubble = new kchodorow.lime.SpriteScale9().setFill(spriteSheet.getFrame('bubble.png'))
+        .scale9(300, 100).setPosition(100, 50);
+    var label = new lime.Label().setSize(280, 80).setPosition(150, 50)
+        .setFontSize(24).setFontColor('#BF2A2A')
+        .setText('To win, you must vanquish me and my second.');
+    bubble.appendChild(label);
+    scene.appendChild(bubble);
 
     for (var i = 0; i < 10; i++) {
 	var antag_second = new lime.Sprite().setFill(spriteSheet.getFrame('duelist.png'))
-	    .setPosition(710+i*10, kGround);
+	    .setPosition(kAntag + 10 + i*10, kGround);
 	scene.appendChild(antag_second);
     }
 
@@ -76,7 +92,7 @@ duelists.start = function(){
 
     var shootSecond = function(e){
         gunshot.play();
-	protag_second.runAction(new lime.animation.RotateBy(-90));
+	protag_second.runAction(new lime.animation.RotateBy(90));
     };
     lime.scheduleManager.callAfter(shootSecond, protag_second, 3000);
 

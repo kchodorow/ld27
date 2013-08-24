@@ -14,10 +14,10 @@
    id="svg3755"
    version="1.1"
    inkscape:version="0.48.2 r9819"
-   inkscape:export-filename="/Users/k/Sites/limejs/duelists/assets/sprites/duelist.png"
-   inkscape:export-xdpi="5.0399995"
-   inkscape:export-ydpi="5.0399995"
-   sodipodi:docname="New document 3">
+   inkscape:export-filename="/Users/k/Sites/limejs/duelists/assets/sprites/antag.png"
+   inkscape:export-xdpi="7.3603144"
+   inkscape:export-ydpi="7.3603144"
+   sodipodi:docname="duelist.svg">
   <defs
      id="defs3757" />
   <sodipodi:namedview
@@ -28,13 +28,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="97.857143"
+     inkscape:cx="780.71429"
      inkscape:cy="520"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer3"
      showgrid="false"
-     inkscape:window-width="777"
-     inkscape:window-height="679"
+     inkscape:window-width="1094"
+     inkscape:window-height="725"
      inkscape:window-x="57"
      inkscape:window-y="33"
      inkscape:window-maximized="0" />
@@ -76,5 +76,56 @@
        id="path4296"
        d="m 295.50566,249.50504 c 27.95035,189.22995 1.74588,303.03935 5.71429,300 L 235.50566,860.93362 264.07709,498.07647 292.64852,263.79076 166.93423,518.07647 284.07709,323.79076"
        style="fill:#000000;fill-opacity:1;stroke:none" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer"
+     style="display:none">
+    <rect
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="rect5618"
+       width="94.285713"
+       height="151.42857"
+       x="192.41371"
+       y="88.495697"
+       rx="3.5724089"
+       ry="4.5756822"
+       transform="matrix(0.96860987,-0.24858585,0.24858585,0.96860987,0,0)" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path6128"
+       sodipodi:cx="301.42856"
+       sodipodi:cy="172.36218"
+       sodipodi:rx="87.14286"
+       sodipodi:ry="20"
+       d="m 388.57142,172.36218 a 87.14286,20 0 1 1 -174.28572,0 87.14286,20 0 1 1 174.28572,0 z"
+       transform="matrix(0.97643969,-0.21579047,0.21579047,0.97643969,-35.806653,74.820604)" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="antag">
+    <path
+       sodipodi:type="arc"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path6128-9"
+       sodipodi:cx="301.42856"
+       sodipodi:cy="172.36218"
+       sodipodi:rx="87.14286"
+       sodipodi:ry="20"
+       d="m 388.57142,172.36218 a 87.14286,20 0 1 1 -174.28572,0 87.14286,20 0 1 1 174.28572,0 z"
+       transform="matrix(0.82899521,-0.21579047,0.18320565,0.97643969,12.703718,74.108707)" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path6167"
+       sodipodi:cx="294.28571"
+       sodipodi:cy="162.36218"
+       sodipodi:rx="54.285713"
+       sodipodi:ry="32.857143"
+       d="m 348.57142,162.36218 a 54.285713,32.857143 0 1 1 -108.57143,0 54.285713,32.857143 0 1 1 108.57143,0 z"
+       transform="matrix(0.95861458,-0.28470702,0.28470702,0.95861458,-34.046515,90.504633)" />
   </g>
 </svg>
