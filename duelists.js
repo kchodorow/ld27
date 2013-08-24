@@ -59,7 +59,7 @@ var getLevelsLayer = function() {
     var totalWidth = bWidth*bNumX;
     var totalHeight = bHeight*bNumY;
 
-    levels = new lime.Layer().setPosition(200, (kHeight-totalHeight/2)/2);
+    levels = new lime.Layer().setPosition(200, 100);
     var bg = new lime.RoundedRect().setSize(80, 60).setFill(242, 71, 56, 255)
         .setPosition(0, 0);
     var antag = new lime.Sprite().setFill(spriteSheet.getFrame('antag.png'));
