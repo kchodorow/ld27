@@ -29,58 +29,79 @@ var kAntag = 500;
 
 // entrypoint
 duelists.start = function(){
-    var spriteSheet = new lime.SpriteSheet('assets/duelist.png',
-					   lime.ASSETS.duelist.json,
-					   lime.parser.JSON);
-    var gunshot = new lime.audio.Audio('assets/gunshot.wav');
+    this.spriteSheet = new lime.SpriteSheet('assets/duelist.png',
+					    lime.ASSETS.duelist.json,
+					    lime.parser.JSON);
 
-    var director = new lime.Director(document.getElementById('game'),700,472);
-    var scene = new lime.Scene();
+    this.director = new lime.Director(document.getElementById('game'),700,472);
+    this.scene = new lime.Scene();
 
     // Non-spritesheet
     var background = new lime.Sprite().setFill('assets/background.png').setPosition(350, 236);
-    scene.appendChild(background);
+    this.scene.appendChild(background);
+
+    this.openingScene();
+};
+
+duelists.openingScene = function() {
+    var gunshot = new lime.audio.Audio('assets/gunshot.wav');
 
     // Protagonists
-    var protag = new lime.Sprite().setFill(spriteSheet.getFrame('protag.png'))
+    var protag = new lime.Sprite().setFill(this.spriteSheet.getFrame('protag.png'))
         .setPosition(kProtag, kGround);
-    var protag_second = new lime.Sprite().setFill(spriteSheet.getFrame('duelist.png'))
+    var protag_second = new lime.Sprite().setFill(this.spriteSheet.getFrame('duelist.png'))
         .setPosition(kProtag - 20, kGround).setAnchorPoint(0.5, 1.0);
-    scene.appendChild(protag);
-    scene.appendChild(protag_second);
+    this.scene.appendChild(protag);
+    this.scene.appendChild(protag_second);
 
     // Antagonists
-    var antag = new lime.Sprite().setFill(spriteSheet.getFrame('antag.png'))
+    var antag = new lime.Sprite().setFill(this.spriteSheet.getFrame('antag.png'))
         .setPosition(kAntag, kGround).setAnchorPoint(0.5, 1.0);
-    scene.appendChild(antag);
+    this.scene.appendChild(antag);
 
-    var bubble = new kchodorow.lime.SpriteScale9().setFill(spriteSheet.getFrame('bubble.png'))
+    var protag_bubble = new kchodorow.lime.SpriteScale9().setFill(this.spriteSheet.getFrame('bubble.png'))
         .scale9(300, 100).setPosition(100, 50);
-    var label = new lime.Label().setSize(280, 80).setPosition(150, 50)
-        .setFontSize(24).setFontColor('#BF2A2A')
+    var protag_label = new lime.Label().setSize(280, 80).setPosition(150, 50)
+        .setFontSize(24).setFontColor('#092140')
         .setText('To win, you must vanquish me and my second.');
-    bubble.appendChild(label);
-    scene.appendChild(bubble);
+    protag_bubble.appendChild(protag_label);
+    this.scene.appendChild(protag_bubble);
+
+    // Next button
+    var antag_bubble = new kchodorow.lime.SpriteScale9().setFill(this.spriteSheet.getFrame('bubble.png'))
+        .scale9(300, 100).setPosition(230, 150);
+    var antag_label = new lime.Label().setSize(280, 80).setPosition(150, 50)
+        .setFontSize(24).setFontColor('#BF2A2A')
+        .setText('And you must vanquish me and mine.');
+    antag_bubble.appendChild(antag_label);
+    this.scene.appendChild(antag_bubble);
+
+    var next_bubble = new kchodorow.lime.SpriteScale9().setFill(this.spriteSheet.getFrame('next.png'))
+        .scale9(200, 50).setPosition(100, 250);
+    var next_label = new lime.Label().setSize(190, 40).setPosition(100, 25)
+        .setFontSize(24).setFontColor('#092140')
+        .setText('Agree to terms');
+    next_bubble.appendChild(next_label);
+    this.scene.appendChild(next_bubble);
 
     for (var i = 0; i < 10; i++) {
-	var antag_second = new lime.Sprite().setFill(spriteSheet.getFrame('duelist.png'))
+	var antag_second = new lime.Sprite().setFill(this.spriteSheet.getFrame('duelist.png'))
 	    .setPosition(kAntag + 10 + i*10, kGround);
-	scene.appendChild(antag_second);
+	this.scene.appendChild(antag_second);
     }
 
-    director.makeMobileWebAppCapable();
+    this.director.makeMobileWebAppCapable();
 
     var countdown = 3;
     var prompt = new lime.Label().setSize(100,50).setPosition(500, 500).setFontSize(20)
         .setText("3").setFontColor('#000');
-    scene.appendChild(prompt);
+    this.scene.appendChild(prompt);
 
     var last_update = 0;
     var update_prompt = function() {
 	--countdown;
 	if (countdown <= 0) {
 	    prompt.setText("Shoot!");
-	    lime.scheduleManager.unschedule(this);
 	} else {
 	    prompt.setText(countdown);
 	}
@@ -88,7 +109,6 @@ duelists.start = function(){
     window.setTimeout(update_prompt, 1000);
     window.setTimeout(update_prompt, 2000);
     window.setTimeout(update_prompt, 3000);
-    //    lime.scheduleManager.schedule(update_prompt, antag);
 
     var shootSecond = function(e){
         gunshot.play();
@@ -102,9 +122,8 @@ duelists.start = function(){
     });
 
     // set current scene active
-    director.replaceScene(scene);
-}
-
+    this.director.replaceScene(this.scene);
+};
 
 //this is required for outside access after code is compiled in ADVANCED_COMPILATIONS mode
 goog.exportSymbol('duelists.start', duelists.start);

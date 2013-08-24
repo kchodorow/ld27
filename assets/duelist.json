@@ -3,14 +3,14 @@
 "antag.png":
 {
 	"frame": {"x":2,"y":2,"w":21,"h":60},
-	"rotated": false,
+	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":21,"h":60},
 	"sourceSize": {"w":21,"h":60}
 },
 "bubble.png":
 {
-	"frame": {"x":46,"y":44,"w":12,"h":12},
+	"frame": {"x":19,"y":82,"w":12,"h":12},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":12,"h":12},
@@ -18,7 +18,7 @@
 },
 "dot.png":
 {
-	"frame": {"x":60,"y":44,"w":2,"h":2},
+	"frame": {"x":2,"y":124,"w":2,"h":2},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":2,"h":2},
@@ -26,16 +26,24 @@
 },
 "duelist.png":
 {
-	"frame": {"x":46,"y":2,"w":15,"h":40},
+	"frame": {"x":2,"y":82,"w":15,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":40},
 	"sourceSize": {"w":15,"h":40}
 },
+"next.png":
+{
+	"frame": {"x":2,"y":46,"w":48,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":34},
+	"sourceSize": {"w":48,"h":34}
+},
 "protag.png":
 {
-	"frame": {"x":25,"y":2,"w":19,"h":60},
-	"rotated": false,
+	"frame": {"x":2,"y":25,"w":19,"h":60},
+	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":19,"h":60},
 	"sourceSize": {"w":19,"h":60}
@@ -45,8 +53,8 @@
 	"version": "1.0",
 	"image": "duelist.png",
 	"format": "RGBA8888",
-	"size": {"w":64,"h":64},
+	"size": {"w":64,"h":128},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:5fa89cc752f6de807081a0aaea7b87e2$"
+	"smartupdate": "$TexturePacker:SmartUpdate:c82afb72402e69778dbab7da9dd2d87b$"
 }
 }
