@@ -41,6 +41,11 @@ var kWidth = 700;
 var kWon = true;
 var kClickEvent = ['mousedown','touchstart'];
 
+// Tracking phase hack
+var kPhase = 0;
+var kBoardPhase = 0;
+var kLevelsPhase = 1;
+
 // On levels layer
 var kDuelistChild = 0;
 var kLockChild = 1;
@@ -196,6 +201,7 @@ var addSeconds = function(duelists, e) {
 
 currentLevel = 0;
 var endGame = function(won) {
+    kPhase = kLevelsPhase;
     lime.scheduleManager.unschedule(runTimer, duelists.board.timer);
     dotCount = 0;
 
@@ -311,6 +317,7 @@ var shrinkDot = function(dt) {
 var kSquare = 50;
 
 var showLevel = function(levelNum) {
+    kPhase = kBoardPhase;
     if (levelNum instanceof goog.events.Event) {
 	currentLevel = this.getParent().getChildIndex(this);
     } else {
@@ -374,6 +381,7 @@ var addEnemy = function(board) {
     var gun = new lime.Sprite().setFill(spriteSheet.getFrame('gun.png'))
         .setPosition(start_x, start_y).setAnchorPoint(0, .2).setRotation(30);
     board.appendChild(gun);
+    board.gun = gun;
 
     chooseGunTarget(gun);
 };
@@ -466,7 +474,9 @@ var shoot = function(gun) {
 
     var end_x = Math.floor(Math.random()*level.getWidth());
     var end_y = Math.floor(Math.random()*level.getHeight());
-    chooseGunTarget(gun);
+    if (kPhase == kBoardPhase) {
+	chooseGunTarget(gun);
+    }
 };
 
 var runTimer = function t(dt) {
@@ -481,15 +491,6 @@ var runTimer = function t(dt) {
 	this.last_update = this.last_update - 1000;
     }
 }
-
-duelists.gameOver = function(duelists) {
-    var scene = new lime.Scene();
-    var label = new lime.Label().setText("Game over").setPosition(kWidth/2, kHeight/2)
-        .setFontFamily('Luckiest Guy');
-    scene.appendChild(label);
-    // TODO: play again button
-    this.director.replaceScene(scene, lime.transitions.Dissolve, 2);
-};
 
 //this is required for outside access after code is compiled in ADVANCED_COMPILATIONS mode
 goog.exportSymbol('duelists.start', duelists.start);

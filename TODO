@@ -1,5 +1,4 @@
 * Loading screen until font is loaded
-* Enemy logic
 * Make guys reappear after spinning out of existence
 * Move poncho guy and big guy away from each other
 * Change up velocity of dots disappearing
@@ -27,3 +26,5 @@ DONE
 * Make sprites for each duelist (+1 for protag second)
 * Show bullet hole on shot circles
 * Reverse direction gun is pointing
+* Enemy logic
+* Fix bug with endGame
