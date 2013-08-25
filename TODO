@@ -1,6 +1,4 @@
 * Loading screen until font is loaded
-* Change up velocity of dots disappearing
-* Show "you lost" or "you won" message at end of game
 
 Maybe:
 * Splash screen
@@ -8,6 +6,7 @@ Maybe:
 * Make lock prettier
 * Make star shinier
 * Make protag right color
+* Show "you lost" or "you won" message at end of game
 
 DONE
 ====
@@ -32,3 +31,4 @@ DONE
 * Move sun over
 * Have player disappear into sunset when game is over
 * Fix bug with shooting random circles
+* Change up velocity of dots disappearing
