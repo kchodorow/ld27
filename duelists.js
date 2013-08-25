@@ -132,7 +132,7 @@ duelists.openingScene = function() {
 
     // Antagonists
     this.antag = new lime.Sprite().setFill(spriteSheet.getFrame('antag.png'))
-        .setPosition(kAntag, kGround).setAnchorPoint(0.5, 1.0);
+        .setPosition(kAntag, kGround);
     this.scene.appendChild(this.antag);
 
     // Speech bubbles
@@ -298,6 +298,8 @@ var selectDot = function(e) {
     }
     this.clicked = true;
 
+    var bullet_hole = new lime.Circle().setSize(3,3).setFill(9, 33, 64, 255);
+    this.appendChild(bullet_hole);
     lime.scheduleManager.unschedule(shrinkDot, this);
     if (music.isPlaying()) {
 	gunshot.play();
