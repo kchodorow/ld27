@@ -352,7 +352,7 @@ var showLevel = function(levelNum) {
     var banner_label = new lime.Label().setFontFamily('Luckiest Guy')
         .setText("Shoot three circles of the same color in a row before the timer runs out")
         .setFontSize(24).setFontColor(9, 33, 64)
-        .setPosition(kWidth/2, 100).setSize(kWidth-20, 150);
+        .setPosition(kWidth/2, 100).setSize(kWidth-100, 150);
     duelists.scene.appendChild(banner_label);
     
     duelists.scene.appendChild(board);
@@ -367,7 +367,7 @@ var addEnemy = function(board) {
     var start_x = Math.random()*width;
     var start_y = Math.random()*height;
     var gun = new lime.Sprite().setFill(spriteSheet.getFrame('gun.png'))
-        .setPosition(start_x, start_y).setAnchorPoint(1, 0);
+        .setPosition(start_x, start_y).setAnchorPoint(1, 0).setRotation(30);
     board.appendChild(gun);
 
     chooseGunTarget(gun);
@@ -378,6 +378,31 @@ var chooseGunTarget = function(gun) {
     // Choose a random square
     var end_x = Math.floor(Math.random()*level.getWidth());
     var end_y = Math.floor(Math.random()*level.getHeight());
+    var index = end_x+end_y*level.getWidth();
+    var child = duelists.board.children_[index];
+    for (var i = index; i < duelists.board.getNumberOfChildren(); i++) {
+	end_x = Math.floor(Math.random()*level.getWidth());
+	end_y = Math.floor(Math.random()*level.getHeight());
+	child = duelists.board.children_[end_x+end_y*level.getWidth()];
+	if (!child.clicked) {
+	    break;
+	}
+    }
+    if (!child.clicked) {
+	for (var i = index-1; i >= 0; i--) {
+	    end_x = Math.floor(Math.random()*level.getWidth());
+	    end_y = Math.floor(Math.random()*level.getHeight());
+	    child = duelists.board.children_[end_x+end_y*level.getWidth()];
+	    if (!child.clicked) {
+		break;
+	    }
+	}
+	if (child.clicked) {
+	    // TODO: end game
+	    return;
+	}
+    }
+
     gun.end_x = end_x;
     gun.end_y = end_y;
     
