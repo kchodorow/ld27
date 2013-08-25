@@ -142,7 +142,7 @@ var openingScene = function() {
     duelists.scene.splash = splash;
 
     var pauseButton = new lime.Sprite().setFill(spriteSheet.getFrame('pause.png'))
-        .setPosition(kWidth-30, 40);
+        .setPosition(kWidth-40, 40);
     duelists.scene.appendChild(pauseButton);
     duelists.pause = pauseButton;
     goog.events.listen(pauseButton, kClickEvent, function() {
