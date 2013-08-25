@@ -335,6 +335,7 @@ var kTargetAlpha = 175;
 
 // shrink 30 px over 5 seconds = 6px/sec = .006px/ms
 var shrinkDot = function(dt) {
+    var level = kchodorow.Levels[currentLevel];
     var size = this.getSize();
     // If it's too small, reset
     if (size.width < 1) {
@@ -343,11 +344,11 @@ var shrinkDot = function(dt) {
 	this.setSize(newSize, newSize);
 
 	// Change color
-	var newColor = kchodorow.Levels[currentLevel].getColor();
+	var newColor = level.getColor();
 	this.setFill(newColor.r, newColor.g, newColor.b, kTargetAlpha);
 	this.color = newColor.r*256*256+newColor.g*256+newColor.b;
     } else {
-	var newSize = new goog.math.Size(size.width-(dt*.006), size.height-(dt*.006));
+	var newSize = new goog.math.Size(size.width-(dt*level.getDotVelocity()), size.height-(dt*level.getDotVelocity()));
 	this.setSize(newSize);
     }
 };
@@ -433,7 +434,8 @@ var addEnemy = function(board) {
 var chooseGunTarget = function(gun) {
     strategyChooseBlocking(gun);
     
-    var anim = new lime.animation.MoveTo(gun.end_x*kSquare, gun.end_y*kSquare).setDuration(1);
+    var anim = new lime.animation.MoveTo(gun.end_x*kSquare, gun.end_y*kSquare)
+        .setDuration(kchodorow.Levels[currentLevel].getGunSpeed());
     gun.runAction(anim);
     goog.events.listen(anim, ['stop'], goog.partial(shoot, gun));
 };
@@ -510,7 +512,7 @@ var strategyChooseBlocking = function(gun) {
 
 var shoot = function(gun) {
     var level = kchodorow.Levels[currentLevel];
-    var circle = duelists.board.children_[gun.end_x+gun.end_y*level.getWidth()];
+    var circle = duelists.board.children_[gun.end_x*level.getHeight()+gun.end_y];
     var size = circle.getSize();
     if (circle.getSize().width > 5) {
 	selectDot.call(circle, enemy);
