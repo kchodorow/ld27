@@ -263,7 +263,7 @@ var endGame = function(won) {
 
 var dotCount = 0;
 var curColor = null;
-var selectDot = function(player) {
+var selectDot = function(p) {
     // Don't allow multiple clicks on the same dot
     if (this.clicked) {
 	return;
@@ -277,10 +277,10 @@ var selectDot = function(player) {
 	gunshot.play();
     }
 
-    player.register(this.color);
+    p.register(this);
 
-    if (player.dotCount >= 3) {
-	endGame(player.isPlayer());
+    if (p.dotCount >= 3) {
+	endGame(p.isPlayer());
     }
 };
 
@@ -328,6 +328,8 @@ var showLevel = function(levelNum) {
 	    var color = level.getColor();
 	    var dot = new lime.Circle().setFill(color.r, color.g, color.b, 175)
 		.setSize(startingSize, startingSize).setPosition(i*kSquare, j*kSquare);
+	    dot.x = i;
+	    dot.y = j;
 	    dot.color = color.r*256*256+color.g*256+color.b;
 	    // Between 3 & 5
 	    dot.shrinker = lime.scheduleManager.schedule(shrinkDot, dot);
@@ -374,8 +376,15 @@ var addEnemy = function(board) {
 };
 
 var chooseGunTarget = function(gun) {
+    strategyChooseBlocking(gun);
+    
+    var anim = new lime.animation.MoveTo(gun.end_x*kSquare, gun.end_y*kSquare).setDuration(1);
+    gun.runAction(anim);
+    goog.events.listen(anim, ['stop'], goog.partial(shoot, gun));
+};
+
+var strategyChooseRandom = function(gun) {
     var level = kchodorow.Levels[currentLevel];
-    // Choose a random square
     var end_x = Math.floor(Math.random()*level.getWidth());
     var end_y = Math.floor(Math.random()*level.getHeight());
     var index = end_x+end_y*level.getWidth();
@@ -405,10 +414,43 @@ var chooseGunTarget = function(gun) {
 
     gun.end_x = end_x;
     gun.end_y = end_y;
-    
-    var anim = new lime.animation.MoveTo(end_x*kSquare, end_y*kSquare).setDuration(3);
-    gun.runAction(anim);
-    goog.events.listen(anim, ['stop'], goog.partial(shoot, gun));
+};
+
+var strategyChooseBlocking = function(gun) {
+    var level = kchodorow.Levels[currentLevel];
+
+    // Find last player click x & y
+    var lastClick = player.getLastClick();
+    if (lastClick == null) {
+	strategyChooseRandom(gun);
+	return;
+    }
+    var color = player.getColor();
+
+    var maxDot = null;
+    var maxSize = 0;
+    // Locate the largest circle of that color on the board
+    for (var i = 0; i < level.getWidth(); i++) {
+	for (var j = 0; j < level.getHeight(); j++) {
+	    dot = duelists.board.children_[i+j*level.getWidth()];
+	    if (dot.clicked || dot.color != color) {
+		continue;
+	    }
+
+	    if (dot.getSize().width > maxSize) {
+		maxSize = dot.getSize().width;
+		maxDot = dot;
+	    }
+	}
+    }
+
+    if (maxDot == null) {
+	strategyChooseRandom(gun);
+	return;
+    }
+
+    gun.end_x = maxDot.x;
+    gun.end_y = maxDot.y;
 };
 
 var shoot = function(gun) {
