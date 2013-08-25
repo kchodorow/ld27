@@ -398,7 +398,7 @@ var chooseGunTarget = function(gun) {
 	    }
 	}
 	if (child.clicked) {
-	    // TODO: end game
+	    endGame(kLost);
 	    return;
 	}
     }
