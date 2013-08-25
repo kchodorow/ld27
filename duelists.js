@@ -81,6 +81,7 @@ var getLevelsLayer = function() {
 	    var lock = new lime.Sprite().setFill(spriteSheet.getFrame('lock.png'));
 	    bg.appendChild(sprite);
 	    bg.appendChild(lock);
+	    bg.lock = lock;
 	    levels.appendChild(bg);
 	}
     }
@@ -184,47 +185,7 @@ var addSeconds = function(duelists, e) {
     }
 
     protag_second.runAction(new lime.animation.MoveTo(kProtag - 20, kGround).setDuration(2));
-    showLevel();
-
-//     var countdown = 3;
-//     var prompt = new lime.Label().setSize(100,50).setPosition(kWidth/2, kHeight/2).setFontSize(24)
-//         .setText("3").setFontColor('#000');
-//     scene.appendChild(prompt);
-
-//     var last_update = 0;
-//     var update_prompt = function() {
-// 	--countdown;
-// 	if (countdown <= 0) {
-// 	    scene.removeChild(prompt);
-// 	    duelists.showLevel();
-// 	} else {
-// 	    prompt.setText(countdown);
-// 	}
-//     };
-//     window.setTimeout(update_prompt, 1000);
-//     window.setTimeout(update_prompt, 2000);
-//     window.setTimeout(update_prompt, 3000);
-
-//     var antagIsDead = false;
-//     var shootSecond = function(e){
-//         gunshot.play();
-// 	protag_second.runAction(new lime.animation.RotateBy(90));
-//     };
-//     lime.scheduleManager.callAfter(shootSecond, protag_second, 3000);
-//     var shootProtag = function(e) {
-// 	if (antagIsDead) {
-// 	    return;
-// 	}
-// 	gunshot.play();
-// 	duelists.protag.runAction(new lime.animation.RotateBy(90));
-// 	lime.scheduleManager.callAfter(goog.partial(duelists.gameOver, duelists), duelists, 3000);
-//     };
-//     lime.scheduleManager.callAfter(shootProtag, duelists.protag, 4000);
- 
-//     goog.events.listen(duelists.antag, kClickEvent, function(e){
-//         gunshot.play();
-// 	duelists.antag.runAction(new lime.animation.RotateBy(-90));
-//     });
+    showLevel(0);
 };
 
 currentLevel = 0;
@@ -253,7 +214,9 @@ var endGame = function(won) {
 	    died.play();
 	}
 
-	if (!sprite.x) {
+	// If we haven't added an x NOR a star, add an x.  If we've added a star, 
+	// don't unstar.
+	if (!sprite.x && !sprite.star) {
 	    var x = new lime.Sprite().setFill(spriteSheet.getFrame('x.png'));
 	    sprite.appendChild(x);
 	    sprite.x = x;
@@ -268,9 +231,11 @@ var endGame = function(won) {
     if (music.isPlaying()) {
 	levelUp.play();
     }
+
     sprite.removeChild(sprite.x);
     var star = new lime.Sprite().setFill(spriteSheet.getFrame('star.png'));
     sprite.appendChild(star);
+    sprite.star = star;
 
     currentLevel++;
 
@@ -285,7 +250,7 @@ var endGame = function(won) {
     }
 
     var nextLevel = levels.children_[currentLevel];
-    nextLevel.removeChild(nextLevel.children_[kLockChild]);
+    nextLevel.removeChild(nextLevel.lock);
     goog.events.listen(nextLevel, kClickEvent, showLevel);
 };
 
@@ -337,7 +302,12 @@ var shrinkDot = function(dt) {
     }
 };
 
-var showLevel = function() {
+var showLevel = function(levelNum) {
+    if (levelNum instanceof goog.events.Event) {
+	currentLevel = this.getParent().getChildIndex(this);
+    } else {
+	currentLevel = levelNum;
+    }
     var levelsLayer = getLevelsLayer();
     duelists.scene.removeChild(levelsLayer);
 

@@ -3,6 +3,7 @@
 * Make spear for speech bubble
 * Loading screen until font is loaded
 * Enemy logic
+* Show "you lost" or "you won" message at end of game
 
 Animations:
 * Sprite falling
@@ -10,7 +11,6 @@ Animations:
 
 Maybe:
 * Splash screen
-* Allow replaying earlier levels
 
 DONE
 ====
@@ -22,3 +22,4 @@ DONE
 * Make desert landscape flatter
 * Show 0 on timer
 * Add bullet hole
+* Allow replaying earlier levels
