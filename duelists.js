@@ -119,8 +119,30 @@ duelists.start = function(){
     // Music
     music = new lime.audio.Audio('assets/desert.mp3');
     music.play(true);
+    goog.events.listen(music, 'loaded', openingScene);
+
+    var loading = new lime.Label().setText("Loading...").setFontSize(24)
+        .setPosition(kWidth/2, kHeight/2);
+    this.scene.appendChild(loading);
+    this.scene.loading = loading;
+
+    this.director.makeMobileWebAppCapable();
+
+    // set current scene active
+    this.director.replaceScene(this.scene);
+};
+
+var openingScene = function() {
+    duelists.scene.removeChild(duelists.scene.loading);
+
+    var splash = new lime.Label().setText('Dirty Rotten Seconds')
+        .setFontSize(50).setFontColor('#092140').setFontFamily('Luckiest Guy')
+        .setPosition(kWidth/2, 100).setSize(kWidth, 100);
+    duelists.scene.appendChild(splash);
+    duelists.scene.splash = splash;
+
     var pauseButton = new lime.Sprite().setFill(spriteSheet.getFrame('pause.png')).setPosition(kWidth-30, 30);
-    this.scene.appendChild(pauseButton);
+    duelists.scene.appendChild(pauseButton);
     goog.events.listen(pauseButton, kClickEvent, function() {
 	    if (music.isPlaying()) {
 		this.setFill(spriteSheet.getFrame('play.png'));
@@ -131,40 +153,31 @@ duelists.start = function(){
 	    }
 	});
 
-    this.director.makeMobileWebAppCapable();
-
-    // set current scene active
-    this.director.replaceScene(this.scene);
-
-    this.openingScene();
-};
-
-duelists.openingScene = function() {
     // Protagonists
-    this.protag = new lime.Sprite().setFill(spriteSheet.getFrame('protag.png'))
+    duelists.protag = new lime.Sprite().setFill(spriteSheet.getFrame('protag.png'))
         .setPosition(kProtag, kGround);
-    this.scene.appendChild(this.protag);
+    duelists.scene.appendChild(duelists.protag);
 
     // Antagonists
-    this.antag = new lime.Sprite().setFill(spriteSheet.getFrame('antag00.png'))
+    duelists.antag = new lime.Sprite().setFill(spriteSheet.getFrame('antag00.png'))
         .setPosition(kAntag, kGround);
-    this.scene.appendChild(this.antag);
-    this.scene.antags = [this.antag];
-    this.scene.curAntag = this.antag;
+    duelists.scene.appendChild(duelists.antag);
+    duelists.scene.antags = [duelists.antag];
+    duelists.scene.curAntag = duelists.antag;
 
     // Speech bubbles
-    this.bubbles = [];
+    duelists.bubbles = [];
 
     var antag_bubble = new kchodorow.lime.SpriteScale9().setFill(spriteSheet.getFrame('bubble.png'))
-        .scale9(300, 100).setPosition(kWidth/2-150, 100);
+        .scale9(300, 100).setPosition(kWidth/2-150, 150);
     var dart = new lime.Sprite().setFill(spriteSheet.getFrame('dart.png')).setPosition(220, 174);
     antag_bubble.appendChild(dart);
     var antag_label = new lime.Label().setSize(280, 80).setPosition(150, 50)
         .setFontSize(24).setFontColor('#BF2A2A').setFontFamily('Luckiest Guy')
         .setText('You must vanquish me and all of my seconds to win the duel.');
     antag_bubble.appendChild(antag_label);
-    this.scene.appendChild(antag_bubble);
-    this.bubbles.push(antag_bubble);
+    duelists.scene.appendChild(antag_bubble);
+    duelists.bubbles.push(antag_bubble);
 
     // Next button
     var next_bubble = new lime.Sprite().setFill(spriteSheet.getFrame('next.png'))
@@ -173,8 +186,8 @@ duelists.openingScene = function() {
         .setFontSize(24).setFontColor('#092140').setFontFamily('Luckiest Guy')
         .setText('Agree to duel');
     next_bubble.appendChild(next_label);
-    this.scene.appendChild(next_bubble);
-    this.bubbles.push(next_bubble);
+    duelists.scene.appendChild(next_bubble);
+    duelists.bubbles.push(next_bubble);
 
     goog.events.listen(next_bubble, ['mousedown', 'touchstart'], 
 		       goog.partial(addSeconds, duelists));
@@ -183,6 +196,7 @@ duelists.openingScene = function() {
 // this => lime.Sprite (next_bubble)
 var addSeconds = function(duelists, e) {
     var scene = duelists.scene;
+    scene.removeChild(scene.splash);
 
     for (var i = 0; i < duelists.bubbles.length; i++) {
 	scene.removeChild(duelists.bubbles[i]);
