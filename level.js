@@ -8,7 +8,7 @@ var colorMap =
      // dark red
      {r: 191, g: 42, b: 42},
      // Cyan
-     {r: 4, g: 146, b: 178},
+     {r: 4, g: 146, b: 178}
      ]; 
 
 kchodorow.Level = function(width, height, colors, time) {
@@ -46,5 +46,5 @@ kchodorow.Levels =
      new kchodorow.Level(5, 5, 3, 5),
      new kchodorow.Level(5, 5, 3, 5),
      new kchodorow.Level(5, 5, 3, 5),
-     new kchodorow.Level(5, 5, 3, 3),
+     new kchodorow.Level(5, 5, 3, 3)
      ];
