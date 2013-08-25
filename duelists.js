@@ -20,13 +20,12 @@ goog.require('lime.Director');
 goog.require('lime.Scene');
 goog.require('lime.Layer');
 goog.require('lime.Circle');
-goog.require('lime.Polygon');
 goog.require('lime.RoundedRect');
 goog.require('lime.Label');
 goog.require('lime.animation.Spawn');
-goog.require('lime.animation.FadeTo');
 goog.require('lime.animation.ScaleTo');
 goog.require('lime.animation.MoveTo');
+goog.require('lime.animation.MoveBy');
 goog.require('lime.animation.RotateBy');
 goog.require('lime.animation.KeyframeAnimation');
 
@@ -134,6 +133,9 @@ duelists.start = function(){
 
     this.director.makeMobileWebAppCapable();
 
+    // set current scene active
+    this.director.replaceScene(this.scene);
+
     this.openingScene();
 };
 
@@ -176,9 +178,6 @@ duelists.openingScene = function() {
 
     goog.events.listen(next_bubble, ['mousedown', 'touchstart'], 
 		       goog.partial(addSeconds, duelists));
-
-    // set current scene active
-    this.director.replaceScene(this.scene);
 };
 
 // this => lime.Sprite (next_bubble)
@@ -192,6 +191,7 @@ var addSeconds = function(duelists, e) {
     var protag_second = new lime.Sprite().setFill(spriteSheet.getFrame('protag_second.png'))
         .setPosition(kProtag - 50, kGround);
     scene.appendChild(protag_second);
+    scene.protag_second = protag_second;
 
     for (var i = 1; i <= 10; i++) {
 	var pos_x = Math.random()*10+kAntag+20*i+50;
@@ -216,6 +216,41 @@ var endGame = function(won) {
     // Pop the last child: the banner
     duelists.scene.removeChildAt(duelists.scene.getNumberOfChildren()-1);
 
+    player.reset();
+    enemy.reset();
+
+    if (currentLevel == 10 && won) {
+	duelists.scene.protag_second.runAction(new lime.animation.MoveBy(-200, 0).setDuration(3));
+
+	var layer = new lime.Layer();
+	var star1 = new lime.Sprite().setFill(spriteSheet.getFrame('star.png')).setPosition(100, -100);
+	var star2 = new lime.Sprite().setFill(spriteSheet.getFrame('star.png')).setPosition(600, -100);
+	var youWon = new lime.Label().setText("You won!").setFontFamily('Luckiest Guy')
+	    .setFontSize(40).setFontColor(9, 33, 64)
+	    .setPosition(kWidth/2, -100);
+	layer.appendChild(youWon);
+	layer.appendChild(star1);
+	layer.appendChild(star2);
+
+	var playAgain = new lime.Label().setText("Play again?").setFontFamily('Luckiest Guy')
+	    .setFontSize(24).setFontColor(9, 33, 64)
+	    .setPosition(-10, 5);
+	var next_bubble = new lime.Sprite().setFill(spriteSheet.getFrame('next.png'))
+	    .setPosition(kWidth/2, 50);
+	next_bubble.appendChild(playAgain);
+	goog.events.listen(next_bubble, ['mousedown', 'touchstart'], restart);
+
+	layer.appendChild(next_bubble);
+	layer.runAction(new lime.animation.MoveTo(0, 200));
+
+	duelists.scene.appendChild(layer);
+
+	// Walk into sunset
+	duelists.protag.runAction(new lime.animation.Spawn(new lime.animation.MoveTo(300, 400).setDuration(20).setEasing(lime.animation.Easing.LINEAR),
+							   new lime.animation.ScaleTo(0).setDuration(20)));
+	return;
+    }
+
     // Display levels
     var levelsX = 175;
     var levels = getLevelsLayer();
@@ -227,9 +262,6 @@ var endGame = function(won) {
     if (currentLevel == 0) {
 	goog.events.listen(sprite, kClickEvent, showLevel);
     }
-
-    player.reset();
-    enemy.reset();
 
     if (!won) {
 	duelists.protag.runAction(new lime.animation.Spawn(new lime.animation.RotateBy(720),
@@ -264,23 +296,20 @@ var endGame = function(won) {
 
     currentLevel++;
 
-    // TODO: test
-    if (currentLevel > 10) {
-	var star = new lime.Sprite().setFill(spriteSheet.getFrame('star.png'))
-	    .setSize(300, 300).setPosition(kWidth/2, kHeight/2);
-	var youWin = new lime.Label().setText("YOU WIN!").setFontFamily('Luckiest Guy');
-	star.appendChild(youWin);
-	duelists.scene.appendChild(star);
-	return;
-    }
-
     var nextLevel = levels.children_[currentLevel];
     nextLevel.removeChild(nextLevel.lock);
     goog.events.listen(nextLevel, kClickEvent, showLevel);
 };
 
-var dotCount = 0;
-var curColor = null;
+var restart = function() {
+    currentLevel = 0;
+    levels = null;
+
+    layer = this.getParent();
+    duelists.scene.removeChild(layer);
+    duelists.openingScene();
+};
+
 var selectDot = function(p) {
     // Don't allow multiple clicks on the same dot
     if (this.clicked) {

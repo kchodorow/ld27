@@ -1,7 +1,6 @@
 * Loading screen until font is loaded
 * Change up velocity of dots disappearing
 * Fix bug with shooting random circles
-
 * Show "you lost" or "you won" message at end of game
 
 Maybe:
@@ -32,3 +31,4 @@ DONE
 * Make speech bubble more rounded
 * Make spear for speech bubble
 * Move sun over
+* Have player disappear into sunset when game is over
