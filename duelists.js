@@ -141,8 +141,10 @@ var openingScene = function() {
     duelists.scene.appendChild(splash);
     duelists.scene.splash = splash;
 
-    var pauseButton = new lime.Sprite().setFill(spriteSheet.getFrame('pause.png')).setPosition(kWidth-30, 30);
+    var pauseButton = new lime.Sprite().setFill(spriteSheet.getFrame('pause.png'))
+        .setPosition(kWidth-30, 40);
     duelists.scene.appendChild(pauseButton);
+    duelists.pause = pauseButton;
     goog.events.listen(pauseButton, kClickEvent, function() {
 	    if (music.isPlaying()) {
 		this.setFill(spriteSheet.getFrame('play.png'));
@@ -267,11 +269,13 @@ var endGame = function(won) {
 	return;
     }
 
+    duelists.scene.removeChild(duelists.banner);
     // Display levels
     var levelsX = 175;
     var levels = getLevelsLayer();
     levels.setPosition(levelsX, -200);
     duelists.scene.appendChild(levels);
+    duelists.scene.appendChild(duelists.pause);
     levels.runAction(new lime.animation.MoveTo(levelsX, 100));
 
     var sprite = levels.children_[currentLevel];
@@ -370,6 +374,7 @@ var shrinkDot = function(dt) {
 };
 
 var kSquare = 50;
+var boardX = 200;
 
 var showLevel = function(levelNum) {
     kPhase = kBoardPhase;
@@ -382,11 +387,9 @@ var showLevel = function(levelNum) {
     var levelsLayer = getLevelsLayer();
     duelists.scene.removeChild(levelsLayer);
 
-    var boardX = 200;
-
     var level = kchodorow.Levels[currentLevel];
     // TODO: fix centering
-    var board = new lime.Layer().setPosition(boardX, -100);
+    var board = new lime.Layer().setPosition(boardX, kHeight*2);
     for (var i = 0; i < level.getWidth(); i++) {
 	for (var j = 0; j < level.getHeight(); j++) {
 	    var startingSize = Math.floor(Math.random()*20)+10; // 10px -> 30px
@@ -424,19 +427,36 @@ var showLevel = function(levelNum) {
     board.appendChild(enemyGoalCount);
     enemy.setCounter(enemyGoalCount);
 
-    addEnemy(board);
-
+    var banner = new lime.Sprite().setFill(spriteSheet.getFrame('banner.png'))
+        .setSize(kWidth, 100).setPosition(kWidth/2, -200)
     var banner_label = new lime.Label().setFontFamily('Luckiest Guy')
         .setText("Shoot "+level.getGoal()+" circles of the same color in a row before your opponent does")
         .setFontSize(24).setFontColor(9, 33, 64)
-        .setPosition(kWidth/2, 100).setSize(kWidth-100, 150);
-    duelists.scene.appendChild(banner_label);
+        .setSize(kWidth-200, 90).setPosition(0, 25);
+    banner.appendChild(banner_label);
+    duelists.scene.appendChild(banner);
+    duelists.banner = banner;
+    banner.runAction(new lime.animation.MoveTo(kWidth/2, kHeight/2));
 
-    duelists.scene.appendChild(board);
-    board.runAction(new lime.animation.MoveTo(boardX, 120));
+    goog.events.listen(banner, kClickEvent, dropBoard);
+
+    // Hack to remove and re-add the pause button so it'll be on top of the banner
+    duelists.scene.removeChild(duelists.pause);
+    duelists.scene.appendChild(duelists.pause);
+};
+
+var dropBoard = function() {
+    addEnemy(duelists.board);
+    duelists.scene.appendChild(duelists.board);
+    duelists.board.runAction(new lime.animation.MoveTo(boardX, 120));
+
+    this.runAction(new lime.animation.MoveTo(kWidth/2, 50));
 };
 
 var addEnemy = function(board) {
+    if ('gun' in board) {
+	return;
+    }
     var level = kchodorow.Levels[currentLevel];
     var width = level.getWidth()*kSquare;
     var height = level.getHeight()*kSquare;
