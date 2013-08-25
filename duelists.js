@@ -326,7 +326,7 @@ var selectDot = function(p) {
 
     p.register(this);
 
-    if (p.getDotCount() >= 3) {
+    if (p.getDotCount() >= kchodorow.Levels[currentLevel].getGoal()) {
 	endGame(p.isPlayer());
     }
 };
@@ -394,24 +394,28 @@ var showLevel = function(levelNum) {
     duelists.scene.curAntag.setPosition(kAntag, kGround).setScale(1.0);
     duelists.protag.setPosition(kProtag, kGround).setScale(1.0);
 
-    var timer = new lime.Label().setFontFamily('Luckiest Guy')
-        .setText(level.getSeconds())
+    var goalCount = new lime.Label().setFontFamily('Luckiest Guy')
+        .setText("0")
         .setFontSize(24).setFontColor(9, 33, 64)
         .setPosition(-100, 150);
-    timer.numeric_time = level.getSeconds();
-    timer.last_update = 0;
-    lime.scheduleManager.schedule(runTimer, timer);
-    board.appendChild(timer);
-    board.timer = timer;
+    board.appendChild(goalCount);
+    player.setCounter(goalCount);
+
+    var enemyGoalCount = new lime.Label().setFontFamily('Luckiest Guy')
+        .setText("0")
+        .setFontSize(24).setFontColor('#BF2A2A')
+        .setPosition(350, 150);
+    board.appendChild(enemyGoalCount);
+    enemy.setCounter(enemyGoalCount);
 
     addEnemy(board);
 
     var banner_label = new lime.Label().setFontFamily('Luckiest Guy')
-        .setText("Shoot three circles of the same color in a row before the timer runs out")
+        .setText("Shoot "+level.getGoal()+" circles of the same color in a row before your opponent does")
         .setFontSize(24).setFontColor(9, 33, 64)
         .setPosition(kWidth/2, 100).setSize(kWidth-100, 150);
     duelists.scene.appendChild(banner_label);
-    
+
     duelists.scene.appendChild(board);
     board.runAction(new lime.animation.MoveTo(boardX, 120));
 };

@@ -23,9 +23,14 @@ kchodorow.Player.prototype.register = function(dot) {
     } else {
 	this.dotCount_ = 1;
     }
+    this.counter_.setText(this.dotCount_)
     this.curColor_ = dot.color;
     this.lastClick_ = new goog.math.Coordinate(dot.x, dot.y);
 };
+
+kchodorow.Player.prototype.setCounter = function(counterSprite) {
+    this.counter_ = counterSprite;
+}
 
 kchodorow.Player.prototype.getLastClick = function() {
     return this.lastClick_;

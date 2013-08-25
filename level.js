@@ -23,6 +23,7 @@ kchodorow.Level = function(width, height, colors, opts) {
     // 30px over 5 seconds
     this.dotVelocity_ = 'velocity' in opts? opts.velocity : .006;
     this.gunSpeed_ = 'gunSpeed' in opts? opts.gunSpeed : 1;
+    this.goal_ = 'goal' in opts? opts.goal : 3;
 };
 
 kchodorow.Level.prototype.getWidth = function() {
@@ -43,24 +44,28 @@ kchodorow.Level.prototype.getSeconds = function() {
 
 kchodorow.Level.prototype.getDotVelocity = function() {
     return this.dotVelocity_;
-}
+};
 
 kchodorow.Level.prototype.getGunSpeed = function() {
     return this.gunSpeed_;
-}
+};
 
-// TODO: goal # of shots
+kchodorow.Level.prototype.getGoal = function() {
+    return this.goal_;
+};
+
+
 kchodorow.Levels = 
     [
-     new kchodorow.Level(6, 6, 2, {velocity: .003, gunSpeed: 3}),
-     new kchodorow.Level(6, 6, 3, {velocity: .004, gunSpeed: 3}),
-     new kchodorow.Level(5, 5, 3, {velocity: .005, gunSpeed: 2}),
-     new kchodorow.Level(4, 4, 3),
-     new kchodorow.Level(3, 3, 3),
-     new kchodorow.Level(5, 5, 3),
-     new kchodorow.Level(5, 5, 3),
-     new kchodorow.Level(5, 5, 3),
-     new kchodorow.Level(5, 5, 3),
+     new kchodorow.Level(6, 6, 2, {velocity: .003, gunSpeed: 3, goal: 5}),
+     new kchodorow.Level(6, 6, 3, {velocity: .004, gunSpeed: 3, goal: 6}),
+     new kchodorow.Level(5, 5, 3, {velocity: .005, gunSpeed: 2, goal: 7}),
+     new kchodorow.Level(4, 4, 3, {goal: 6}),
+     new kchodorow.Level(3, 3, 3, {goal: 5}),
+     new kchodorow.Level(5, 5, 3, {goal: 4}),
      new kchodorow.Level(5, 5, 3, {gunSpeed: .8}),
-     new kchodorow.Level(5, 5, 3, {gunSpeed: .5})
+     new kchodorow.Level(5, 5, 3, {velocity: .007}),
+     new kchodorow.Level(5, 5, 3, {velocity: .008}),
+     new kchodorow.Level(5, 5, 3, {velocity: .007, gunSpeed: .8, goal: 4}),
+     new kchodorow.Level(5, 5, 3, {velocity: .008, gunSpeed: .5, goal: 4})
      ];
