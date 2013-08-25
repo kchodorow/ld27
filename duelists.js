@@ -6,6 +6,8 @@ goog.require('lime.parser.JSON');
 goog.require('lime.ASSETS.duelist.json');
 goog.require('lime.SpriteSheet');
 
+goog.require('kchodorow.Player');
+
 // Levels
 goog.require('kchodorow.Level');
 goog.require('kchodorow.Levels');
@@ -49,6 +51,8 @@ var levelUp = null;
 var died = null;
 var levels = null;
 var music = null;
+var player = null;
+var enemy = null;
 
 var getLevelsLayer = function() {
     if (levels != null) {
@@ -100,6 +104,9 @@ duelists.start = function(){
     this.director = new lime.Director(document.getElementById('game'),kWidth,kHeight);
     this.director.setDisplayFPS(false);
     this.scene = new lime.Scene();
+
+    player = new kchodorow.Player(true);
+    enemy = new kchodorow.Player(false);
 
     // Non-spritesheet
     var background = new lime.Sprite().setFill('assets/background.png').setPosition(350, 236);
@@ -256,7 +263,7 @@ var endGame = function(won) {
 
 var dotCount = 0;
 var curColor = null;
-var selectDot = function(e) {
+var selectDot = function(player) {
     // Don't allow multiple clicks on the same dot
     if (this.clicked) {
 	return;
@@ -269,15 +276,11 @@ var selectDot = function(e) {
     if (music.isPlaying()) {
 	gunshot.play();
     }
-    if (this.color == curColor) {
-	dotCount++;
-    } else {
-	dotCount = 1;
-	// Reschedule all dots?
-    }
-    curColor = this.color;
-    if (dotCount >= 3) {
-	endGame(kWon);
+
+    player.register(this.color);
+
+    if (player.dotCount >= 3) {
+	endGame(player.isPlayer());
     }
 };
 
@@ -302,12 +305,15 @@ var shrinkDot = function(dt) {
     }
 };
 
+var kSquare = 50;
+
 var showLevel = function(levelNum) {
     if (levelNum instanceof goog.events.Event) {
 	currentLevel = this.getParent().getChildIndex(this);
     } else {
 	currentLevel = levelNum;
     }
+
     var levelsLayer = getLevelsLayer();
     duelists.scene.removeChild(levelsLayer);
 
@@ -321,11 +327,11 @@ var showLevel = function(levelNum) {
 	    var startingSize = Math.floor(Math.random()*20)+10; // 10px - 30px
 	    var color = level.getColor();
 	    var dot = new lime.Circle().setFill(color.r, color.g, color.b, 175)
-		.setSize(startingSize, startingSize).setPosition(i*50, j*50);
+		.setSize(startingSize, startingSize).setPosition(i*kSquare, j*kSquare);
 	    dot.color = color.r*256*256+color.g*256+color.b;
 	    // Between 3 & 5
 	    dot.shrinker = lime.scheduleManager.schedule(shrinkDot, dot);
-	    goog.events.listen(dot, kClickEvent, selectDot);
+	    goog.events.listen(dot, kClickEvent, goog.partial(selectDot, player));
 	    board.appendChild(dot);
 	}
     }
@@ -341,6 +347,8 @@ var showLevel = function(levelNum) {
     board.appendChild(timer);
     board.timer = timer;
 
+    addEnemy(board);
+
     var banner_label = new lime.Label().setFontFamily('Luckiest Guy')
         .setText("Shoot three circles of the same color in a row before the timer runs out")
         .setFontSize(24).setFontColor(9, 33, 64)
@@ -348,7 +356,47 @@ var showLevel = function(levelNum) {
     duelists.scene.appendChild(banner_label);
     
     duelists.scene.appendChild(board);
-    board.runAction(new lime.animation.MoveTo(boardX, 70));
+    board.runAction(new lime.animation.MoveTo(boardX, 120));
+};
+
+var addEnemy = function(board) {
+    var level = kchodorow.Levels[currentLevel];
+    var width = level.getWidth()*kSquare;
+    var height = level.getHeight()*kSquare;
+
+    var start_x = Math.random()*width;
+    var start_y = Math.random()*height;
+    var gun = new lime.Sprite().setFill(spriteSheet.getFrame('gun.png'))
+        .setPosition(start_x, start_y).setAnchorPoint(1, 0);
+    board.appendChild(gun);
+
+    chooseGunTarget(gun);
+};
+
+var chooseGunTarget = function(gun) {
+    var level = kchodorow.Levels[currentLevel];
+    // Choose a random square
+    var end_x = Math.floor(Math.random()*level.getWidth());
+    var end_y = Math.floor(Math.random()*level.getHeight());
+    gun.end_x = end_x;
+    gun.end_y = end_y;
+    
+    var anim = new lime.animation.MoveTo(end_x*kSquare, end_y*kSquare).setDuration(3);
+    gun.runAction(anim);
+    goog.events.listen(anim, ['stop'], goog.partial(shoot, gun));
+};
+
+var shoot = function(gun) {
+    var level = kchodorow.Levels[currentLevel];
+    var circle = duelists.board.children_[gun.end_x+gun.end_y*level.getWidth()];
+    var size = circle.getSize();
+    if (circle.getSize().width > 5) {
+	selectDot.call(circle, enemy);
+    }
+
+    var end_x = Math.floor(Math.random()*level.getWidth());
+    var end_y = Math.floor(Math.random()*level.getHeight());
+    chooseGunTarget(gun);
 };
 
 var runTimer = function t(dt) {
@@ -356,7 +404,7 @@ var runTimer = function t(dt) {
     if (this.last_update > 1000) {
 	this.numeric_time--;
 	if (this.numeric_time < 0) {
-	    endGame(kLost);
+	    //	    endGame(kLost);
 	    return;
 	}
 	this.setText(this.numeric_time);

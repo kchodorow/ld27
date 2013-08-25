@@ -1,19 +1,16 @@
-* Make speech bubble more rounded
-* Make spear for speech bubble
 * Loading screen until font is loaded
 * Enemy logic
-* Show "you lost" or "you won" message at end of game
-* Reverse direction gun is pointing
 * Make guys reappear after spinning out of existence
 * Move poncho guy and big guy away from each other
 
-Animations:
-* Sprite falling
-* Sprite shooting
-
+* Make speech bubble more rounded
+* Make spear for speech bubble
+* Show "you lost" or "you won" message at end of game
 
 Maybe:
 * Splash screen
+* Sprite falling
+* Sprite shooting
 
 DONE
 ====
@@ -27,3 +24,5 @@ DONE
 * Add bullet hole
 * Allow replaying earlier levels
 * Make sprites for each duelist (+1 for protag second)
+* Show bullet hole on shot circles
+* Reverse direction gun is pointing
