@@ -18,13 +18,12 @@ kchodorow.Player.prototype.isPlayer = function() {
 };
 
 kchodorow.Player.prototype.register = function(dot) {
-    var color = dot.color;
-    if (this.color == color) {
+    if (this.curColor_ == dot.color) {
 	this.dotCount_++;
     } else {
-	dotCount_ = 1;
+	this.dotCount_ = 1;
     }
-    this.curColor_ = color;
+    this.curColor_ = dot.color;
     this.lastClick_ = new goog.math.Coordinate(dot.x, dot.y);
 };
 

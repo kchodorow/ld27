@@ -212,6 +212,9 @@ var endGame = function(won) {
     levels.runAction(new lime.animation.MoveTo(levelsX, 100));
 
     var sprite = levels.children_[currentLevel];
+    if (currentLevel == 0) {
+	goog.events.listen(sprite, kClickEvent, showLevel);
+    }
 
     if (!won) {
 	duelists.protag.runAction(new lime.animation.Spawn(new lime.animation.RotateBy(720),
@@ -279,7 +282,7 @@ var selectDot = function(p) {
 
     p.register(this);
 
-    if (p.dotCount >= 3) {
+    if (p.getDotCount() >= 3) {
 	endGame(p.isPlayer());
     }
 };
