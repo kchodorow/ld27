@@ -222,6 +222,9 @@ var endGame = function(won) {
 	goog.events.listen(sprite, kClickEvent, showLevel);
     }
 
+    player.reset();
+    enemy.reset();
+
     if (!won) {
 	duelists.protag.runAction(new lime.animation.Spawn(new lime.animation.RotateBy(720),
 							   new lime.animation.ScaleTo(0.0)));
