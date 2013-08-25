@@ -34,11 +34,11 @@
 },
 "antag03.png":
 {
-	"frame": {"x":78,"y":122,"w":24,"h":58},
+	"frame": {"x":2,"y":125,"w":22,"h":62},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":58},
-	"sourceSize": {"w":24,"h":58}
+	"spriteSourceSize": {"x":0,"y":0,"w":22,"h":62},
+	"sourceSize": {"w":22,"h":62}
 },
 "antag04.png":
 {
@@ -66,11 +66,11 @@
 },
 "antag07.png":
 {
-	"frame": {"x":2,"y":125,"w":22,"h":62},
+	"frame": {"x":43,"y":60,"w":24,"h":60},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":22,"h":62},
-	"sourceSize": {"w":22,"h":62}
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":60},
+	"sourceSize": {"w":24,"h":60}
 },
 "antag08.png":
 {
@@ -82,11 +82,11 @@
 },
 "antag09.png":
 {
-	"frame": {"x":43,"y":60,"w":24,"h":60},
+	"frame": {"x":78,"y":122,"w":24,"h":58},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":60},
-	"sourceSize": {"w":24,"h":60}
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":58},
+	"sourceSize": {"w":24,"h":58}
 },
 "bubble.png":
 {
@@ -199,6 +199,6 @@
 	"format": "RGBA8888",
 	"size": {"w":256,"h":256},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:a32d02426a9a530bf78eb155249d7cf5$"
+	"smartupdate": "$TexturePacker:SmartUpdate:92620d7766ba82f9e04f93c348f391d5$"
 }
 }

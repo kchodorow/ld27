@@ -1,6 +1,5 @@
 * Loading screen until font is loaded
 * Make guys reappear after spinning out of existence
-* Move poncho guy and big guy away from each other
 * Change up velocity of dots disappearing
 
 * Make speech bubble more rounded
@@ -9,8 +8,7 @@
 
 Maybe:
 * Splash screen
-* Sprite falling
-* Sprite shooting
+* Make currently "active" targets (shot at and count toward winning) glow
 
 DONE
 ====
@@ -28,3 +26,4 @@ DONE
 * Reverse direction gun is pointing
 * Enemy logic
 * Fix bug with endGame
+* Move poncho guy and big guy away from each other
