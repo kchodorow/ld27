@@ -234,6 +234,7 @@ var endGame = function(won) {
 
     player.reset();
     enemy.reset();
+    duelists.scene.removeChild(duelists.banner);
 
     if (currentLevel == 10 && won) {
 	duelists.scene.protag_second.runAction(new lime.animation.MoveBy(-200, 0).setDuration(3));
@@ -269,7 +270,6 @@ var endGame = function(won) {
 	return;
     }
 
-    duelists.scene.removeChild(duelists.banner);
     // Display levels
     var levelsX = 175;
     var levels = getLevelsLayer();
