@@ -147,6 +147,8 @@ duelists.openingScene = function() {
     this.antag = new lime.Sprite().setFill(spriteSheet.getFrame('antag00.png'))
         .setPosition(kAntag, kGround);
     this.scene.appendChild(this.antag);
+    this.scene.antags = [this.antag];
+    this.scene.curAntag = this.antag;
 
     // Speech bubbles
     this.bubbles = [];
@@ -170,7 +172,8 @@ duelists.openingScene = function() {
     this.scene.appendChild(next_bubble);
     this.bubbles.push(next_bubble);
 
-    goog.events.listen(next_bubble, ['mousedown', 'touchstart'], goog.partial(addSeconds, duelists));
+    goog.events.listen(next_bubble, ['mousedown', 'touchstart'], 
+		       goog.partial(addSeconds, duelists));
 
     // set current scene active
     this.director.replaceScene(this.scene);
@@ -185,15 +188,16 @@ var addSeconds = function(duelists, e) {
     }
 
     var protag_second = new lime.Sprite().setFill(spriteSheet.getFrame('protag_second.png'))
-        .setPosition(kProtag - 20, kGround);
+        .setPosition(kProtag - 50, kGround);
     scene.appendChild(protag_second);
 
-    for (var i = 0; i < 10; i++) {
-	var pos_x = Math.random()*10+kAntag+20*i+20;
+    for (var i = 1; i <= 10; i++) {
+	var pos_x = Math.random()*10+kAntag+20*i+50;
 	var pos_y = kGround - Math.random()*10;
 	var antag_second = new lime.Sprite().setFill(spriteSheet.getFrame('antag0'+i+'.png'))
 	    .setPosition(pos_x, pos_y);
 	scene.appendChild(antag_second);
+	scene.antags.push(antag_second);
     }
 
     showLevel(0);
@@ -304,7 +308,7 @@ var shrinkDot = function(dt) {
     // If it's too small, reset
     if (size.width < 1) {
 	// Change size
-	var newSize = Math.floor(Math.random()*20)+10; // 10px - 30px
+	var newSize = Math.floor(Math.random()*20)+10; // 10px -> 30px
 	this.setSize(newSize, newSize);
 
 	// Change color
@@ -337,7 +341,7 @@ var showLevel = function(levelNum) {
     var board = new lime.Layer().setPosition(boardX, -100);
     for (var i = 0; i < level.getWidth(); i++) {
 	for (var j = 0; j < level.getHeight(); j++) {
-	    var startingSize = Math.floor(Math.random()*20)+10; // 10px - 30px
+	    var startingSize = Math.floor(Math.random()*20)+10; // 10px -> 30px
 	    var color = level.getColor();
 	    var dot = new lime.Circle().setFill(color.r, color.g, color.b, 175)
 		.setSize(startingSize, startingSize).setPosition(i*kSquare, j*kSquare);
@@ -351,6 +355,12 @@ var showLevel = function(levelNum) {
 	}
     }
     duelists.board = board;
+
+    // Reset protagonist & antagonist for level
+    duelists.scene.curAntag.setScale(0.0);
+    duelists.scene.curAntag = duelists.scene.antags[currentLevel];
+    duelists.scene.curAntag.setPosition(kAntag, kGround).setScale(1.0);
+    duelists.protag.setPosition(kProtag, kGround).setScale(1.0);
 
     var timer = new lime.Label().setFontFamily('Luckiest Guy')
         .setText(level.getSeconds())

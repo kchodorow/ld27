@@ -1,5 +1,4 @@
 * Loading screen until font is loaded
-* Make guys reappear after spinning out of existence
 * Change up velocity of dots disappearing
 
 * Make speech bubble more rounded
@@ -27,3 +26,4 @@ DONE
 * Enemy logic
 * Fix bug with endGame
 * Move poncho guy and big guy away from each other
+* Make guys reappear after spinning out of existence
