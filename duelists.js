@@ -30,11 +30,11 @@ goog.require('lime.animation.KeyframeAnimation');
 
 goog.require('kchodorow.lime.SpriteScale9');
 
-var kAntag = 500;
+var kAntag = 400;
 var kGround = 430;
 var kHeight = 472;
 var kLost = false;
-var kProtag = 100;
+var kProtag = 200;
 var kWidth = 700;
 var kWon = true;
 var kClickEvent = ['mousedown','touchstart'];
@@ -55,8 +55,8 @@ var getLevelsLayer = function() {
 	return levels;
     }
 
-    var bWidth = 100;
-    var bHeight = 75;
+    var bWidth = 120;
+    var bHeight = 100;
     var bNumX = 4;
     var bNumY = 3;
 
@@ -64,27 +64,27 @@ var getLevelsLayer = function() {
     var totalHeight = bHeight*bNumY;
 
     levels = new lime.Layer();
-    var bg = new lime.RoundedRect().setSize(80, 60).setFill(242, 71, 56, 255)
-        .setPosition(0, 0);
-    var antag = new lime.Sprite().setFill(spriteSheet.getFrame('antag.png'));
-    bg.appendChild(antag);
-    goog.events.listen(bg, kClickEvent, showLevel);
-    levels.appendChild(bg);
-    for (var col = 0; col < bNumY; col++) {
-	for (var row = 0; row < bNumX; row++) {
-	    if (row == 0 && col == 0) {
+    for (var row = 0; row < 3; row++) {
+	for (var col = 0; col < 4; col++) {
+	    if (row == 2 && col == 3) {
 		continue;
 	    }
-	    var bg = new lime.RoundedRect().setSize(80, 60).setFill(242, 71, 56, 255)
-		.setPosition(row * 100, col * 75);
-	    var sprite = new lime.Sprite().setFill(spriteSheet.getFrame('duelist.png'));
-	    var lock = new lime.Sprite().setFill(spriteSheet.getFrame('lock.png'));
+	    var bg = new lime.RoundedRect().setSize(100, 80).setFill(242, 71, 56, 255)
+		.setPosition(col * bWidth, row * bHeight);
+	    var num = row*bNumX+col;
+	    var sprite = new lime.Sprite().setFill(spriteSheet.getFrame('antag0'+num+'.png'));
 	    bg.appendChild(sprite);
-	    bg.appendChild(lock);
-	    bg.lock = lock;
+
+	    // Don't show a lock on the first level, ever.
+	    if (row != 0 || col != 0) {
+		var lock = new lime.Sprite().setFill(spriteSheet.getFrame('lock.png'));
+		bg.appendChild(lock);
+		bg.lock = lock;
+	    }
 	    levels.appendChild(bg);
 	}
     }
+
     return levels;
 };
 
@@ -132,7 +132,7 @@ duelists.openingScene = function() {
     this.scene.appendChild(this.protag);
 
     // Antagonists
-    this.antag = new lime.Sprite().setFill(spriteSheet.getFrame('antag.png'))
+    this.antag = new lime.Sprite().setFill(spriteSheet.getFrame('antag00.png'))
         .setPosition(kAntag, kGround);
     this.scene.appendChild(this.antag);
 
@@ -172,19 +172,18 @@ var addSeconds = function(duelists, e) {
 	scene.removeChild(duelists.bubbles[i]);
     }
 
-    var protag_second = new lime.Sprite().setFill(spriteSheet.getFrame('duelist.png'))
-        .setPosition(-20, kGround).setAnchorPoint(0.5, 1.0);
+    var protag_second = new lime.Sprite().setFill(spriteSheet.getFrame('protag_second.png'))
+        .setPosition(kProtag - 20, kGround);
     scene.appendChild(protag_second);
 
     for (var i = 0; i < 10; i++) {
-	var antag_second = new lime.Sprite().setFill(spriteSheet.getFrame('duelist.png'))
-	    .setPosition(kWidth+20, kGround);
+	var pos_x = Math.random()*10+kAntag+20*i+20;
+	var pos_y = kGround - Math.random()*10;
+	var antag_second = new lime.Sprite().setFill(spriteSheet.getFrame('antag0'+i+'.png'))
+	    .setPosition(pos_x, pos_y);
 	scene.appendChild(antag_second);
-	// Adjust velocity for distance
-	antag_second.runAction(new lime.animation.MoveTo(kAntag + 10 + i*10, kGround).setDuration(2));
     }
 
-    protag_second.runAction(new lime.animation.MoveTo(kProtag - 20, kGround).setDuration(2));
     showLevel(0);
 };
 
@@ -199,10 +198,11 @@ var endGame = function(won) {
     duelists.scene.removeChildAt(duelists.scene.getNumberOfChildren()-1);
 
     // Display levels
+    var levelsX = 175;
     var levels = getLevelsLayer();
-    levels.setPosition(200, -200);
+    levels.setPosition(levelsX, -200);
     duelists.scene.appendChild(levels);
-    levels.runAction(new lime.animation.MoveTo(200, 100));
+    levels.runAction(new lime.animation.MoveTo(levelsX, 100));
 
     var sprite = levels.children_[currentLevel];
 
@@ -263,7 +263,7 @@ var selectDot = function(e) {
     }
     this.clicked = true;
 
-    var bullet_hole = new lime.Circle().setSize(3,3).setFill(9, 33, 64, 255);
+    var bullet_hole = new lime.Circle().setSize(5,5).setFill(9, 33, 64, 255);
     this.appendChild(bullet_hole);
     lime.scheduleManager.unschedule(shrinkDot, this);
     if (music.isPlaying()) {

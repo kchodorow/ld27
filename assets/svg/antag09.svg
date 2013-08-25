@@ -14,10 +14,10 @@
    id="svg3755"
    version="1.1"
    inkscape:version="0.48.2 r9819"
-   inkscape:export-filename="/Users/k/Sites/limejs/duelists/assets/sprites/antag.png"
+   inkscape:export-filename="/Users/k/Sites/limejs/duelists/assets/sprites/antag09.png"
    inkscape:export-xdpi="7.3603144"
    inkscape:export-ydpi="7.3603144"
-   sodipodi:docname="duelist.svg">
+   sodipodi:docname="antag09.svg">
   <defs
      id="defs3757" />
   <sodipodi:namedview
@@ -27,9 +27,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="780.71429"
-     inkscape:cy="520"
+     inkscape:zoom="0.7"
+     inkscape:cx="-35"
+     inkscape:cy="819.57947"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -55,27 +55,36 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       sodipodi:type="arc"
-       style="fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(-1,0,0,1,626.07583,22.857143)"
+       style="fill:#092140;fill-opacity:1;stroke:none"
+       d="m 354.28572,203.79076 c 35.44834,45.09186 -21.43017,53.45295 -48.57143,58.57142 -26.82526,0 -48.57143,-36.56415 -48.57143,-72.85714 0,-36.293 21.74617,-58.57143 48.57143,-58.57143 14.6934,1.1527 67.46286,11.4291 41.95995,49.67199 10.21138,12.5286 13.57897,1.59511 6.61148,23.18516 z"
        id="path3782"
-       sodipodi:cx="305.71429"
-       sodipodi:cy="189.50504"
-       sodipodi:rx="48.57143"
-       sodipodi:ry="65.714287"
-       d="m 354.28572,189.50504 a 48.57143,65.714287 0 1 1 -97.14286,0 48.57143,65.714287 0 1 1 97.14286,0 z"
-       transform="matrix(-1,0,0,1,626.07583,22.857143)" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccsccc" />
     <path
-       style="fill:#000000;fill-opacity:1;stroke:none"
-       d="m 320.36155,243.79075 c 27.95035,189.22995 1.74588,303.03935 5.71429,300 l -65.71429,311.42858 -25.71429,-4.28572 54.28572,-358.57143 28.57143,-234.28571 C 258.2964,336.54628 186.84195,419.65375 174.64726,515.21932 l 27.14286,14.28572 c 3.98826,-77.44063 35.42473,-151.29685 107.14286,-211.42857"
+       style="fill:#092140;fill-opacity:1;stroke:none"
+       d="m 308.93298,278.07646 c 27.95035,-71.77765 16.03159,283.03935 20,280 -57.56527,132.53855 -77.22957,201.35714 -111.42857,300.00001 l -25.71429,-4.28572 c 27.8012,-112.44104 53.51376,-113.54807 97.14286,-361.42857 l 1.42857,-155.71428 c -67.73686,84.14747 -71.82847,141.79086 -22.85714,191.42856 l -30.00001,5.7143 c -35.7618,-22.78 -67.40071,-66.73879 1.42858,-168.57143"
        id="path4292"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccccccc" />
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/Users/k/Sites/limejs/duelists/assets/sprites/antag01.png"
+       inkscape:export-xdpi="7.3603144"
+       inkscape:export-ydpi="7.3603144" />
     <path
        sodipodi:nodetypes="ccccccccc"
        inkscape:connector-curvature="0"
        id="path4296"
-       d="m 324.85589,249.50504 c -27.95035,189.22995 -1.74588,303.03935 -5.71429,300 l 50,307.14286 15.71429,4.28572 -28.57143,-362.85715 -28.57143,-234.28571 c 77.4702,34.29526 153.69577,229.46966 100,282.85714 -12.54357,9.51798 -19.34202,6.22506 -38.53393,14.34196 43.9928,-20.38235 50.14434,-183.47806 -52.89464,-237.1991"
-       style="fill:#000000;fill-opacity:1;stroke:none" />
+       d="m 324.85589,249.50504 c -27.95035,189.22995 -16.03159,331.61078 -20,328.57143 62.64832,-17.3786 41.71187,169.39903 78.57143,287.14286 l 30,-1.42857 C 405.77735,736.63424 354.24239,527.466 356.28446,498.07647 L 344.85589,346.6479 c 9.29151,-6.05126 62.50401,91.12574 114.28571,187.14286 -12.54357,9.51798 39.22941,-19.48922 20.0375,-11.37232 C 446.20424,435.54619 380.20436,305.99811 336.28446,256.6479"
+       style="fill:#092140;fill-opacity:1;stroke:none"
+       inkscape:export-filename="/Users/k/Sites/limejs/duelists/assets/sprites/antag01.png"
+       inkscape:export-xdpi="7.3603144"
+       inkscape:export-ydpi="7.3603144" />
+    <path
+       style="fill:#092140;fill-opacity:1;stroke:none"
+       d="M 277.14286,200.93361 251.42857,225.21932 290,232.36218 z"
+       id="path12132"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -108,24 +117,10 @@
      id="layer3"
      inkscape:label="antag">
     <path
-       sodipodi:type="arc"
-       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       id="path6128-9"
-       sodipodi:cx="301.42856"
-       sodipodi:cy="172.36218"
-       sodipodi:rx="87.14286"
-       sodipodi:ry="20"
-       d="m 388.57142,172.36218 a 87.14286,20 0 1 1 -174.28572,0 87.14286,20 0 1 1 174.28572,0 z"
-       transform="matrix(-0.82899521,-0.21579047,-0.18320565,0.97643969,607.65783,74.108707)" />
-    <path
-       sodipodi:type="arc"
-       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       id="path6167"
-       sodipodi:cx="294.28571"
-       sodipodi:cy="162.36218"
-       sodipodi:rx="54.285713"
-       sodipodi:ry="32.857143"
-       d="m 348.57142,162.36218 a 54.285713,32.857143 0 1 1 -108.57143,0 54.285713,32.857143 0 1 1 108.57143,0 z"
-       transform="matrix(-0.95861458,-0.28470702,-0.28470702,0.95861458,654.40806,90.504633)" />
+       style="fill:#092140;fill-opacity:1;stroke:none"
+       d="m 315.71428,163.79075 22.85715,-45.71428 7.14286,25.71428 22.85714,-12.85714 2.85714,27.14286 24.28572,-7.14286 -44.28572,44.28572 z"
+       id="path11622"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccc" />
   </g>
 </svg>

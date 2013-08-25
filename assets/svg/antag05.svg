@@ -14,10 +14,10 @@
    id="svg3755"
    version="1.1"
    inkscape:version="0.48.2 r9819"
-   inkscape:export-filename="/Users/k/Sites/limejs/duelists/assets/sprites/antag.png"
+   inkscape:export-filename="/Users/k/Sites/limejs/duelists/assets/sprites/antag05.png"
    inkscape:export-xdpi="7.3603144"
    inkscape:export-ydpi="7.3603144"
-   sodipodi:docname="duelist.svg">
+   sodipodi:docname="antag03.svg">
   <defs
      id="defs3757" />
   <sodipodi:namedview
@@ -27,9 +27,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="780.71429"
-     inkscape:cy="520"
+     inkscape:zoom="0.7"
+     inkscape:cx="275"
+     inkscape:cy="577.14286"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -55,27 +55,30 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       sodipodi:type="arc"
-       style="fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(-1,0,0,1,626.07583,28.857143)"
+       style="fill:#092140;fill-opacity:1;stroke:none"
+       d="m 357.14286,165.21933 c 0,18.14649 17.4206,26.00363 8.6309,37.89558 -8.7897,11.89194 -46.64684,52.10441 -60.05947,52.10441 -26.82526,0 -48.57143,-29.42129 -48.57143,-65.71428 0,-36.293 21.74617,-65.71429 48.57143,-65.71429 26.82526,0 51.42857,5.13558 51.42857,41.42858 z"
        id="path3782"
-       sodipodi:cx="305.71429"
-       sodipodi:cy="189.50504"
-       sodipodi:rx="48.57143"
-       sodipodi:ry="65.714287"
-       d="m 354.28572,189.50504 a 48.57143,65.714287 0 1 1 -97.14286,0 48.57143,65.714287 0 1 1 97.14286,0 z"
-       transform="matrix(-1,0,0,1,626.07583,22.857143)" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccssc" />
     <path
-       style="fill:#000000;fill-opacity:1;stroke:none"
-       d="m 320.36155,243.79075 c 27.95035,189.22995 1.74588,303.03935 5.71429,300 l -65.71429,311.42858 -25.71429,-4.28572 54.28572,-358.57143 28.57143,-234.28571 C 258.2964,336.54628 186.84195,419.65375 174.64726,515.21932 l 27.14286,14.28572 c 3.98826,-77.44063 35.42473,-151.29685 107.14286,-211.42857"
+       style="fill:#092140;fill-opacity:1;stroke:none"
+       d="m 326.07584,260.93361 c 27.95035,189.22995 24.60302,301.61077 28.57143,298.57142 l -11.42857,304.28572 -77.14287,-1.42857 47.14286,-350 -44.28571,-154.28571 c -73.35085,49.05298 26.14249,228.09562 8.57143,185.71427 -40.37937,-0.1024 -14.10556,4.46253 -33.01667,13.19916 -71.6928,-156.1112 0.61241,-241.19919 24.44524,-261.77058"
        id="path4292"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccccccc" />
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/Users/k/Sites/limejs/duelists/assets/sprites/antag02.png"
+       inkscape:export-xdpi="7.3603144"
+       inkscape:export-ydpi="7.3603144" />
     <path
        sodipodi:nodetypes="ccccccccc"
        inkscape:connector-curvature="0"
        id="path4296"
-       d="m 324.85589,249.50504 c -27.95035,189.22995 -1.74588,303.03935 -5.71429,300 l 50,307.14286 15.71429,4.28572 -28.57143,-362.85715 -28.57143,-234.28571 c 77.4702,34.29526 153.69577,229.46966 100,282.85714 -12.54357,9.51798 -19.34202,6.22506 -38.53393,14.34196 43.9928,-20.38235 50.14434,-183.47806 -52.89464,-237.1991"
-       style="fill:#000000;fill-opacity:1;stroke:none" />
+       d="m 316.28446,258.07647 c -27.95035,189.22995 33.96841,290.18221 30,287.14286 l 37.14286,320 70,-4.28571 -60,-314.28572 -32.85715,-227.14285 c 37.30054,57.72756 94.13706,220.64081 91.42858,244.28571 7.45643,6.66084 22.08654,7.65362 27.18034,2.91338 C 463.08551,544.30337 434.45356,284.29058 371.99875,279.50505"
+       style="fill:#092140;fill-opacity:1;stroke:none"
+       inkscape:export-filename="/Users/k/Sites/limejs/duelists/assets/sprites/antag02.png"
+       inkscape:export-xdpi="7.3603144"
+       inkscape:export-ydpi="7.3603144" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -106,26 +109,5 @@
   <g
      inkscape:groupmode="layer"
      id="layer3"
-     inkscape:label="antag">
-    <path
-       sodipodi:type="arc"
-       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       id="path6128-9"
-       sodipodi:cx="301.42856"
-       sodipodi:cy="172.36218"
-       sodipodi:rx="87.14286"
-       sodipodi:ry="20"
-       d="m 388.57142,172.36218 a 87.14286,20 0 1 1 -174.28572,0 87.14286,20 0 1 1 174.28572,0 z"
-       transform="matrix(-0.82899521,-0.21579047,-0.18320565,0.97643969,607.65783,74.108707)" />
-    <path
-       sodipodi:type="arc"
-       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       id="path6167"
-       sodipodi:cx="294.28571"
-       sodipodi:cy="162.36218"
-       sodipodi:rx="54.285713"
-       sodipodi:ry="32.857143"
-       d="m 348.57142,162.36218 a 54.285713,32.857143 0 1 1 -108.57143,0 54.285713,32.857143 0 1 1 108.57143,0 z"
-       transform="matrix(-0.95861458,-0.28470702,-0.28470702,0.95861458,654.40806,90.504633)" />
-  </g>
+     inkscape:label="antag" />
 </svg>
