@@ -367,7 +367,7 @@ var addEnemy = function(board) {
     var start_x = Math.random()*width;
     var start_y = Math.random()*height;
     var gun = new lime.Sprite().setFill(spriteSheet.getFrame('gun.png'))
-        .setPosition(start_x, start_y).setAnchorPoint(1, 0).setRotation(30);
+        .setPosition(start_x, start_y).setAnchorPoint(0, .2).setRotation(30);
     board.appendChild(gun);
 
     chooseGunTarget(gun);

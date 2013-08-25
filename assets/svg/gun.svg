@@ -17,7 +17,7 @@
    inkscape:export-filename="/Users/k/Sites/limejs/duelists/assets/sprites/gun.png"
    inkscape:export-xdpi="6.659554"
    inkscape:export-ydpi="6.659554"
-   sodipodi:docname="New document 50">
+   sodipodi:docname="gun.svg">
   <defs
      id="defs8738" />
   <sodipodi:namedview
@@ -28,15 +28,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="375"
+     inkscape:cx="350.94598"
      inkscape:cy="520"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="718"
-     inkscape:window-height="643"
-     inkscape:window-x="59"
-     inkscape:window-y="21"
+     inkscape:window-width="977"
+     inkscape:window-height="636"
+     inkscape:window-x="221"
+     inkscape:window-y="141"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata8741">
@@ -55,19 +55,28 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       style="fill:#000000;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 128.57143,452.36218 59.999996,586.64789 142.85715,580.93361 188.57143,478.07647 220,446.64789 342.85715,443.79075 360,398.07647 l 120,0 20,-34.28572 217.14286,-2.85714 2.85714,-48.57143 -28.57142,0 0,-14.28571 -62.85715,14.28571 -254.28571,2.85714 2.85714,-14.28571 -174.28571,0 -100,120 z"
+       style="fill:#092140;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       d="M 651.42857,452.36218 720,586.64789 637.14285,580.93361 591.42857,478.07647 560,446.64789 437.14285,443.79075 420,398.07647 l -120,0 -20,-34.28572 -217.142864,-2.85714 -2.85714,-48.57143 28.57142,0 0,-14.28571 62.857154,14.28571 254.28571,2.85714 -2.85714,-14.28571 174.28571,0 100,120 z"
        id="path8744"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/k/Sites/limejs/duelists/assets/sprites/gun.png"
+       inkscape:export-xdpi="6.659554"
+       inkscape:export-ydpi="6.659554" />
     <path
-       style="fill:#000000;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 305.71429,440.93361 -51.42857,68.57143 -88.57143,-5.71429 2.85714,-22.85714 68.57143,5.71428 37.14286,-48.57142 z"
+       style="fill:#092140;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       d="m 474.28571,440.93361 51.42857,68.57143 88.57143,-5.71429 -2.85714,-22.85714 -68.57143,5.71428 -37.14286,-48.57142 z"
        id="path8746"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/k/Sites/limejs/duelists/assets/sprites/gun.png"
+       inkscape:export-xdpi="6.659554"
+       inkscape:export-ydpi="6.659554" />
     <path
-       style="fill:#000000;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 177.14286,343.79075 125.71429,318.07647 71.428576,315.21932 120,320.93361 l 57.14286,40 z"
+       style="fill:#092140;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       d="m 602.85714,343.79075 51.42857,-25.71428 54.28571,-2.85715 -48.57142,5.71429 -57.14286,40 z"
        id="path8748"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/k/Sites/limejs/duelists/assets/sprites/gun.png"
+       inkscape:export-xdpi="6.659554"
+       inkscape:export-ydpi="6.659554" />
   </g>
 </svg>
