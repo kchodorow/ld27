@@ -221,6 +221,8 @@ var endGame = function(won) {
 
     if (currentLevel == 10 && won) {
 	duelists.scene.protag_second.runAction(new lime.animation.MoveBy(-200, 0).setDuration(3));
+	duelists.scene.curAntag.runAction(new lime.animation.Spawn(new lime.animation.RotateBy(720),
+								   new lime.animation.ScaleTo(0.0)));
 
 	var layer = new lime.Layer();
 	var star1 = new lime.Sprite().setFill(spriteSheet.getFrame('star.png')).setPosition(100, -100);
@@ -473,6 +475,11 @@ var strategyChooseRandom = function(gun) {
 	}
     }
 
+    if (child.clicked) {
+	endGame(kLost);
+	return;
+    }
+
     gun.end_x = end_x;
     gun.end_y = end_y;
 };
@@ -493,7 +500,7 @@ var strategyChooseBlocking = function(gun) {
     // Locate the largest circle of that color on the board
     for (var i = 0; i < level.getWidth(); i++) {
 	for (var j = 0; j < level.getHeight(); j++) {
-	    dot = duelists.board.children_[i+j*level.getWidth()];
+	    var dot = duelists.board.children_[i+j*level.getWidth()];
 	    if (dot.clicked || dot.color != color) {
 		continue;
 	    }

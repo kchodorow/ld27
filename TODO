@@ -1,3 +1,4 @@
+* Enemy sometimes fires on level screen
 * Loading screen until font is loaded
 
 Maybe:
@@ -5,7 +6,6 @@ Maybe:
 * Make currently "active" targets (shot at and count toward winning) glow
 * Make lock prettier
 * Make star shinier
-* Make protag right color
 * Show "you lost" or "you won" message at end of game
 
 DONE
@@ -32,3 +32,4 @@ DONE
 * Have player disappear into sunset when game is over
 * Fix bug with shooting random circles
 * Change up velocity of dots disappearing
+* Make protag right color
