@@ -1,4 +1,4 @@
-*Play the game at: http://kchodorow.com/games/dirty-rotten-seconds/ *
+*Play the game at: http://kchodorow.com/games/dirty-rotten-seconds/*
 
 You show up to your duel and the other guy brought 10 seconds! You have to beat
 them all to win.
