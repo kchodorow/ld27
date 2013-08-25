@@ -1,4 +1,4 @@
-* Enemy sometimes fires on level screen
+* Show how many you need to win before starting the level
 * Loading screen until font is loaded
 
 Maybe:
@@ -33,3 +33,4 @@ DONE
 * Fix bug with shooting random circles
 * Change up velocity of dots disappearing
 * Make protag right color
+* Enemy sometimes fires on level screen

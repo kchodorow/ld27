@@ -314,7 +314,7 @@ var restart = function() {
 
 var selectDot = function(p) {
     // Don't allow multiple clicks on the same dot
-    if (this.clicked) {
+    if (this.clicked || kPhase == kLevelsPhase) {
 	return;
     }
     this.clicked = true;
