@@ -155,6 +155,8 @@ duelists.openingScene = function() {
 
     var antag_bubble = new kchodorow.lime.SpriteScale9().setFill(spriteSheet.getFrame('bubble.png'))
         .scale9(300, 100).setPosition(kWidth/2-150, 100);
+    var dart = new lime.Sprite().setFill(spriteSheet.getFrame('dart.png')).setPosition(220, 174);
+    antag_bubble.appendChild(dart);
     var antag_label = new lime.Label().setSize(280, 80).setPosition(150, 50)
         .setFontSize(24).setFontColor('#BF2A2A').setFontFamily('Luckiest Guy')
         .setText('You must vanquish me and all of my seconds to win the duel.');

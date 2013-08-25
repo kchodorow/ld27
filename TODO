@@ -1,13 +1,16 @@
 * Loading screen until font is loaded
 * Change up velocity of dots disappearing
+* Fix bug with shooting random circles
 
-* Make speech bubble more rounded
-* Make spear for speech bubble
 * Show "you lost" or "you won" message at end of game
 
 Maybe:
 * Splash screen
 * Make currently "active" targets (shot at and count toward winning) glow
+* Make lock prettier
+* Make star shinier
+* Make protag right color
+* Move sun over
 
 DONE
 ====
@@ -27,3 +30,5 @@ DONE
 * Fix bug with endGame
 * Move poncho guy and big guy away from each other
 * Make guys reappear after spinning out of existence
+* Make speech bubble more rounded
+* Make spear for speech bubble
